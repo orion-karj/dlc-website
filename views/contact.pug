@@ -361,20 +361,6 @@ block content
       position: relative;
     }
 
-    @media (max-width: 768px) {
-      .form-label {
-        margin-bottom: 8px;
-        font-size: 0.9rem;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .form-label {
-        margin-bottom: 6px;
-        font-size: 0.85rem;
-      }
-    }
-
     .form-label.required::after {
       content: ' *';
       color: #e53e3e;
@@ -393,24 +379,6 @@ block content
       font-family: inherit;
       transition: all 0.3s ease;
       backdrop-filter: blur(10px);
-    }
-
-    @media (max-width: 768px) {
-      .form-input,
-      .form-textarea {
-        padding: 8px 10px;
-        font-size: 0.8rem;
-        border-radius: 6px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .form-input,
-      .form-textarea {
-        padding: 6px 8px;
-        font-size: 0.75rem;
-        border-radius: 5px;
-      }
     }
 
     .form-input:focus,
@@ -720,38 +688,38 @@ block content
 
     @media (max-width: 768px) {
       .contact-hero {
-        padding: 60px 0 30px;
-        min-height: 35vh;
+        padding: 80px 0 40px;
+        min-height: 40vh;
         background-attachment: scroll;
       }
 
       .contact-hero-title {
-        font-size: clamp(1.6rem, 4.2vw, 2rem);
-        margin-bottom: 12px;
+        font-size: clamp(2rem, 5vw, 2.5rem);
+        margin-bottom: 16px;
       }
 
       .contact-hero-subtitle {
-        font-size: clamp(0.85rem, 2.6vw, 1rem);
-        margin-bottom: 14px;
+        font-size: clamp(1rem, 3vw, 1.2rem);
+        margin-bottom: 20px;
       }
 
       .contact-section {
-        padding: 40px 0;
+        padding: 60px 0;
       }
 
       .why-choose-section {
-        padding: 40px 0;
+        padding: 60px 0;
       }
 
       .faq-section {
-        padding: 40px 0;
+        padding: 60px 0;
       }
 
       .contact-container {
         flex-direction: column;
-        gap: 20px;
+        gap: 30px;
         align-items: center;
-        padding: 0 10px;
+        padding: 0 16px;
       }
 
       .contact-form {
@@ -759,203 +727,83 @@ block content
         width: 100%;
         max-width: 100%;
         margin: 0;
-        padding: 18px 14px;
+        padding: 24px 20px;
       }
 
       .contact-info {
         order: 2;
         width: 100%;
         flex-direction: column;
-        gap: 14px;
+        gap: 20px;
         margin: 0;
       }
 
       .contact-info-item {
         max-width: none;
-        padding: 14px 10px;
+        padding: 20px 16px;
       }
 
       .why-choose-grid {
         grid-template-columns: 1fr;
-        gap: 14px;
-        margin-top: 20px;
-        padding: 0 10px;
+        gap: 20px;
+        margin-top: 30px;
+        padding: 0 16px;
       }
 
       .faq-grid {
         grid-template-columns: 1fr;
-        gap: 12px;
-        margin-top: 20px;
-        padding: 0 10px;
+        gap: 16px;
+        margin-top: 30px;
+        padding: 0 16px;
         max-width: 100%;
       }
 
       .section-title {
-        font-size: clamp(1.4rem, 3.5vw, 1.8rem);
-        margin-bottom: 25px;
+        font-size: clamp(1.8rem, 4vw, 2.2rem);
+        margin-bottom: 40px;
       }
     }
 
     @media (max-width: 480px) {
       .contact-hero {
-        padding: 50px 0 25px;
-        min-height: 30vh;
+        padding: 80px 0 40px;
       }
 
       .contact-hero-title {
-        font-size: clamp(1.4rem, 3.8vw, 1.6rem);
-        margin-bottom: 10px;
+        margin-bottom: 16px;
       }
 
       .contact-hero-subtitle {
-        font-size: clamp(0.8rem, 2.4vw, 0.9rem);
-        margin-bottom: 12px;
-      }
-
-      .contact-section {
-        padding: 30px 0;
-      }
-
-      .why-choose-section {
-        padding: 30px 0;
-      }
-
-      .faq-section {
-        padding: 30px 0;
+        margin-bottom: 20px;
       }
 
       .contact-form {
-        padding: 16px 12px;
-        margin: 0 8px;
+        padding: 24px 20px;
+        margin: 0 16px;
       }
 
       .form-input,
       .form-textarea {
-        padding: 12px 14px;
-        font-size: 0.9rem;
+        padding: 14px 16px;
+        font-size: 0.95rem;
       }
 
       .form-submit {
-        padding: 14px 20px;
-        font-size: 0.95rem;
+        padding: 16px 24px;
+        font-size: 1rem;
       }
 
       .why-choose-grid {
         grid-template-columns: 1fr;
-        gap: 12px;
-        margin-top: 16px;
-        padding: 0 8px;
+        gap: 20px;
+        margin-top: 30px;
       }
 
       .faq-grid {
-        gap: 10px;
-        margin-top: 16px;
-        padding: 0 8px;
-      }
-
-      .section-title {
-        font-size: clamp(1.2rem, 3.2vw, 1.4rem);
-        margin-bottom: 20px;
-      }
-
-      .contact-container {
+        grid-template-columns: 1fr;
         gap: 16px;
-        padding: 0 8px;
-      }
-
-      .contact-info {
-        gap: 12px;
-      }
-
-      .contact-info-item {
-        padding: 12px 8px;
-      }
-    }
-
-    @media (max-width: 360px) {
-      .contact-hero {
-        padding: 40px 0 20px;
-        min-height: 25vh;
-      }
-
-      .contact-hero-title {
-        font-size: clamp(1.2rem, 3.5vw, 1.4rem);
-        margin-bottom: 8px;
-      }
-
-      .contact-hero-subtitle {
-        font-size: clamp(0.75rem, 2.2vw, 0.85rem);
-        margin-bottom: 10px;
-      }
-
-      .contact-section {
-        padding: 25px 0;
-      }
-
-      .why-choose-section {
-        padding: 25px 0;
-      }
-
-      .faq-section {
-        padding: 25px 0;
-      }
-
-      .contact-form {
-        padding: 14px 10px;
-        margin: 0 6px;
-      }
-
-      .form-input,
-      .form-textarea {
-        padding: 10px 12px;
-        font-size: 0.85rem;
-      }
-
-      .form-submit {
-        padding: 12px 18px;
-        font-size: 0.9rem;
-      }
-
-      .why-choose-grid {
-        gap: 10px;
-        margin-top: 14px;
-        padding: 0 6px;
-      }
-
-      .faq-grid {
-        gap: 8px;
-        margin-top: 14px;
-        padding: 0 6px;
-      }
-
-      .section-title {
-        font-size: clamp(1.1rem, 3vw, 1.3rem);
-        margin-bottom: 16px;
-      }
-
-      .contact-container {
-        gap: 14px;
-        padding: 0 6px;
-      }
-
-      .contact-info {
-        gap: 10px;
-      }
-
-      .contact-info-item {
-        padding: 10px 6px;
-      }
-
-      .why-choose-item {
-        padding: 16px 12px;
-      }
-
-      .faq-question {
-        padding: 16px 18px;
-      }
-
-      .faq-answer {
-        padding: 16px 18px;
+        margin-top: 24px;
+        padding: 0 12px;
       }
     }
 

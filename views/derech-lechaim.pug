@@ -487,6 +487,22 @@ block content
     }
 
     @media (max-width: 768px) {
+      .hero {
+        padding: 100px 0 80px;
+        min-height: 60vh;
+        background-attachment: scroll;
+      }
+
+      .hero-title {
+        font-size: clamp(2rem, 5vw, 3rem);
+        margin-bottom: 20px;
+      }
+
+      .hero-subtitle {
+        font-size: clamp(1rem, 3vw, 1.3rem);
+        margin-bottom: 24px;
+      }
+
       .content-grid {
         grid-template-columns: 1fr;
         gap: 30px;

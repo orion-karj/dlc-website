@@ -1,0 +1,929 @@
+extends layout.pug 
+
+block content
+  style.
+    /* Reset and Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: 'Inter', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.6;
+      color: #e2e8f0;
+      direction: rtl;
+      text-align: right;
+      overflow-x: hidden;
+      background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+      font-weight: 400;
+      position: relative;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        linear-gradient(90deg, transparent 98%, rgba(0, 112, 243, 0.05) 100%),
+        linear-gradient(0deg, transparent 98%, rgba(0, 112, 243, 0.05) 100%);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    /* Scroll fade effects */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .fade-in-left {
+      opacity: 0;
+      transform: translateX(50px);
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .fade-in-left.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .fade-in-right {
+      opacity: 0;
+      transform: translateX(-50px);
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .fade-in-right.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .scale-in {
+      opacity: 0;
+      transform: scale(0.8);
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .scale-in.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      width: 100%;
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      background: linear-gradient(135deg, rgba(0, 112, 243, 0.1) 0%, rgba(59, 130, 246, 0.05) 100%);
+      overflow: hidden;
+      padding: 20px 0;
+    }
+
+    .hero-content {
+      max-width: 800px;
+      z-index: 2;
+    }
+
+    .hero-title {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 24px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      animation: fadeInDown 1s ease-out;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      background: linear-gradient(45deg, #3b82f6, #1d4ed8, #3b82f6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subtitle {
+      font-size: 1.5rem;
+      color: #94a3b8;
+      margin-bottom: 32px;
+      animation: fadeInUp 1s ease-out 0.3s both;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Section Styles */
+    .section {
+      padding: 80px 0;
+      position: relative;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 60px;
+      background: linear-gradient(45deg, #3b82f6, #1d4ed8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .section-title svg {
+      width: 52px;
+      height: 52px;
+      color: #1e40af;
+      margin-left: 16px;
+      vertical-align: middle;
+    }
+
+    /* Content Grid */
+    .content-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+      margin-bottom: 60px;
+    }
+
+    @media (max-width: 768px) {
+      .content-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        margin-bottom: 40px;
+      }
+    }
+
+    .content-text {
+      background: rgba(30, 64, 175, 0.05);
+      border: 1px solid rgba(30, 64, 175, 0.1);
+      border-radius: 20px;
+      padding: 40px;
+      backdrop-filter: blur(10px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .content-text h3 {
+      font-size: 1.8rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+      color: #3b82f6;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .content-text h3 svg {
+      width: 32px;
+      height: 32px;
+      color: #3b82f6;
+    }
+
+    .content-text p {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: #cbd5e1;
+      margin-bottom: 20px;
+    }
+
+    .content-text ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .content-text li {
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(30, 64, 175, 0.1);
+      position: relative;
+      padding-right: 30px;
+      color: #e2e8f0;
+    }
+
+    .content-text li:last-child {
+      border-bottom: none;
+    }
+
+    .content-text li::before {
+      content: '✓';
+      position: absolute;
+      right: 0;
+      top: 12px;
+      color: #10b981;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    /* Full Width Section */
+    .content-full-width {
+      grid-column: 1 / -1;
+      text-align: center;
+      background: linear-gradient(135deg, rgba(30, 64, 175, 0.08), rgba(59, 130, 246, 0.08));
+      border: 2px solid rgba(30, 64, 175, 0.2);
+    }
+
+    .content-full-width h3 {
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+
+    /* Contact Section */
+    .contact-section {
+      background: linear-gradient(135deg, rgba(30, 64, 175, 0.1), rgba(59, 130, 246, 0.1));
+      border-radius: 20px;
+      padding: 60px;
+      text-align: center;
+      margin-top: 60px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      margin-top: 40px;
+    }
+
+    @media (max-width: 768px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        margin-top: 30px;
+      }
+    }
+
+    .contact-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      padding: 30px;
+      background: rgba(30, 64, 175, 0.05);
+      border-radius: 15px;
+      border: 1px solid rgba(30, 64, 175, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .contact-item:hover {
+      transform: translateY(-5px);
+      background: rgba(30, 64, 175, 0.1);
+      border-color: rgba(30, 64, 175, 0.2);
+    }
+
+    .contact-item svg {
+      width: 48px;
+      height: 48px;
+      color: #3b82f6;
+    }
+
+    .contact-item h4 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #e2e8f0;
+    }
+
+    .contact-item p {
+      color: #94a3b8;
+      font-size: 1rem;
+    }
+
+    /* CTA Section */
+    .cta-section {
+      text-align: center;
+      margin-top: 60px;
+    }
+
+    .cta-title {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+      color: #e2e8f0;
+    }
+
+    .cta-description {
+      font-size: 1.1rem;
+      color: #94a3b8;
+      margin-bottom: 30px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+      color: white;
+      padding: 16px 32px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+      color: #000;
+    }
+
+    .btn svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    /* Touch-friendly improvements */
+    @media (hover: none) and (pointer: coarse) {
+      .btn {
+        min-height: 44px;
+        min-width: 44px;
+      }
+      
+      .contact-item {
+        min-height: 44px;
+      }
+      
+      .content-text h3 {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+      }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1200px) {
+      .container {
+        padding: 0 20px;
+      }
+      
+      .content-grid {
+        gap: 40px;
+      }
+      
+      .hero-title {
+        font-size: 3rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 16px;
+      }
+
+      .hero {
+        min-height: 50vh;
+        padding: 40px 0;
+      }
+
+      .hero-title {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+        line-height: 1.1;
+      }
+
+      .hero-subtitle {
+        font-size: 1.2rem;
+        margin-bottom: 24px;
+        padding: 0 16px;
+      }
+
+      .section {
+        padding: 60px 0;
+      }
+
+      .section-title {
+        font-size: 2rem;
+        margin-bottom: 40px;
+      }
+
+      .section-title svg {
+        width: 40px;
+        height: 40px;
+        margin-left: 12px;
+      }
+
+      .content-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .content-text {
+        padding: 30px 24px;
+        border-radius: 16px;
+      }
+
+      .content-text h3 {
+        font-size: 1.6rem;
+        margin-bottom: 16px;
+      }
+
+      .content-text h3 svg {
+        width: 28px;
+        height: 28px;
+      }
+
+      .content-text p {
+        font-size: 1rem;
+        line-height: 1.6;
+      }
+
+      .content-text li {
+        padding: 10px 0;
+        padding-right: 25px;
+        font-size: 0.95rem;
+      }
+
+      .contact-section {
+        padding: 40px 20px;
+        margin-top: 40px;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .contact-item {
+        padding: 24px 20px;
+      }
+
+      .contact-item svg {
+        width: 40px;
+        height: 40px;
+      }
+
+      .cta-title {
+        font-size: 1.8rem;
+      }
+
+      .cta-description {
+        font-size: 1rem;
+        padding: 0 16px;
+      }
+
+      .btn {
+        padding: 14px 28px;
+        font-size: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 0 12px;
+      }
+
+      .hero {
+        min-height: 40vh;
+        padding: 30px 0;
+      }
+
+      .hero-title {
+        font-size: 2rem;
+        margin-bottom: 16px;
+      }
+
+      .hero-subtitle {
+        font-size: 1.1rem;
+        margin-bottom: 20px;
+        padding: 0 12px;
+      }
+
+      .section {
+        padding: 50px 0;
+      }
+
+      .section-title {
+        font-size: 1.8rem;
+        margin-bottom: 30px;
+      }
+
+      .section-title svg {
+        width: 36px;
+        height: 36px;
+        margin-left: 8px;
+      }
+
+      .content-text {
+        padding: 24px 20px;
+        border-radius: 12px;
+      }
+
+      .content-text h3 {
+        font-size: 1.4rem;
+        margin-bottom: 12px;
+      }
+
+      .content-text h3 svg {
+        width: 24px;
+        height: 24px;
+      }
+
+      .content-text p {
+        font-size: 0.95rem;
+        line-height: 1.5;
+      }
+
+      .content-text li {
+        padding: 8px 0;
+        padding-right: 20px;
+        font-size: 0.9rem;
+      }
+
+      .contact-section {
+        padding: 30px 16px;
+        margin-top: 30px;
+      }
+
+      .contact-grid {
+        gap: 20px;
+      }
+
+      .contact-item {
+        padding: 20px 16px;
+      }
+
+      .contact-item svg {
+        width: 36px;
+        height: 36px;
+      }
+
+      .contact-item h4 {
+        font-size: 1.1rem;
+      }
+
+      .contact-item p {
+        font-size: 0.9rem;
+      }
+
+      .cta-title {
+        font-size: 1.6rem;
+      }
+
+      .cta-description {
+        font-size: 0.95rem;
+        padding: 0 12px;
+      }
+
+      .btn {
+        padding: 12px 24px;
+        font-size: 0.95rem;
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .hero-title {
+        font-size: 1.8rem;
+      }
+
+      .hero-subtitle {
+        font-size: 1rem;
+      }
+
+      .section-title {
+        font-size: 1.6rem;
+      }
+
+      .content-text {
+        padding: 20px 16px;
+      }
+
+      .content-text h3 {
+        font-size: 1.3rem;
+      }
+
+      .btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+      }
+    }
+
+    /* Landscape orientation adjustments for mobile */
+    @media (max-height: 500px) and (orientation: landscape) {
+      .hero {
+        min-height: 40vh;
+        padding: 20px 0;
+      }
+
+      .hero-title {
+        font-size: 2rem;
+        margin-bottom: 12px;
+      }
+
+      .hero-subtitle {
+        font-size: 1.1rem;
+        margin-bottom: 16px;
+      }
+
+      .section {
+        padding: 40px 0;
+      }
+    }
+
+    /* High DPI displays */
+    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+      .hero-title {
+        text-shadow: 0 1px 4px rgba(0,0,0,0.4);
+      }
+    }
+
+    /* Print styles */
+    @media print {
+      .hero {
+        min-height: auto;
+        padding: 20px 0;
+      }
+
+      .content-text {
+        break-inside: avoid;
+        border: 1px solid #ccc;
+      }
+
+      .contact-section {
+        break-before: page;
+      }
+    }
+
+    /* Accessibility improvements */
+    @media (prefers-reduced-motion: reduce) {
+      .fade-in,
+      .fade-in-left,
+      .fade-in-right,
+      .scale-in {
+        transition: none;
+        opacity: 1;
+        transform: none;
+      }
+      
+      .btn:hover {
+        transform: none;
+      }
+      
+      .contact-item:hover {
+        transform: none;
+      }
+    }
+
+    /* Dark mode support */
+    @media (prefers-color-scheme: dark) {
+      .content-text {
+        background: rgba(30, 64, 175, 0.08);
+        border-color: rgba(30, 64, 175, 0.15);
+      }
+      
+      .contact-item {
+        background: rgba(30, 64, 175, 0.08);
+        border-color: rgba(30, 64, 175, 0.15);
+      }
+    }
+
+    /* Focus styles for accessibility */
+    .btn:focus,
+    .contact-item:focus {
+      outline: 2px solid #3b82f6;
+      outline-offset: 2px;
+    }
+
+    /* Smooth scrolling for older browsers */
+    @supports not (scroll-behavior: smooth) {
+      html {
+        scroll-behavior: auto;
+      }
+    }
+
+    /* Animations */
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+  script.
+    // Scroll fade-in functionality
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    // Observe all fade-in elements
+    document.addEventListener('DOMContentLoaded', () => {
+      const fadeElements = document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right, .scale-in');
+      fadeElements.forEach(el => {
+        observer.observe(el);
+      });
+    });
+
+  // Hero Section
+  section.hero
+    .hero-content
+      h1.hero-title מי אנחנו?
+      p.hero-subtitle צוות מקצועי שמאמין בכוח של הספורט לשנות חיים
+
+  // Who We Are Section
+  section.section
+    .container
+      .content-grid
+        .content-text.fade-in
+          h3
+            svg(xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24")
+              g(fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5")
+                path(d="M1 20v-1a7 7 0 0 1 7-7v0a7 7 0 0 1 7 7v1")
+                path(d="M13 14v0a5 5 0 0 1 5-5v0a5 5 0 0 1 5 5v.5")
+                path(stroke-linejoin="round" d="M8 12a4 4 0 1 0 0-8a4 4 0 0 0 0 8Zm10-3a3 3 0 1 0 0-6a3 3 0 0 0 0 6Z")
+            | הצוות שלנו
+          p
+            | אנחנו צוות מקצועי שמאמין בכוח של הספורט לשנות חיים.
+            | בראש הפרויקט עומד עמית קורקוש, מנוסה בעבודה עם ילדים ונוער כבר מעל עשור, שמוביל פעילות שמחברת בין ספורט, ערכים והעצמה אישית.
+
+        .content-text.fade-in
+          h3
+            svg(xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24")
+              path(
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+                d="M10.704 4.325a1.5 1.5 0 0 1 2.592 0l1.818 3.12a1.5 1.5 0 0 0 .978.712l3.53.764a1.5 1.5 0 0 1 .8 2.465l-2.405 2.693a1.5 1.5 0 0 0-.374 1.15l.363 3.593a1.5 1.5 0 0 1-2.097 1.524l-3.304-1.456a1.5 1.5 0 0 0-1.21 0l-3.304 1.456a1.5 1.5 0 0 1-2.097-1.524l.363-3.593a1.5 1.5 0 0 0-.373-1.15l-2.406-2.693a1.5 1.5 0 0 1 .8-2.465l3.53-.764a1.5 1.5 0 0 0 .979-.711z"
+              )
+            | מה שמניע אותנו
+          p
+            | האמונה שלנו היא שכל ילד וילדה מגיעים עם פוטנציאל ענק, ודרך פעילות ספורטיבית חווייתית אנחנו יכולים לעזור להם לפרוץ גבולות – גם פיזיים, גם מנטליים.
+          p
+            | אנחנו לא רק מלמדים טכניקה ומשחקים, אלא יוצרים סביבה בטוחה, תומכת ומעצימה שבה כל ילד מרגיש שייך ויכול לצמוח.
+
+  // How We Do It Section
+  section.section
+    .container
+      h2.section-title.fade-in
+        svg(xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 20 20")
+          g(fill="currentColor" fill-rule="evenodd" clip-rule="evenodd")
+            path(d="M10 12a2 2 0 1 0 0-4a2 2 0 0 0 0 4Zm0 2a4 4 0 1 0 0-8a4 4 0 0 0 0 8Zm3.504-11.29a2 2 0 0 1 2.309.375l1.102 1.102a2 2 0 0 1 .375 2.309l-.385.77a1 1 0 1 1-1.789-.895l.385-.77L14.399 4.5l-.77.385a1 1 0 0 1-.894-1.789l.77-.385Z")
+            path(d="M15.644 5.888a1 1 0 0 1 1.297.564l.46 1.166a1 1 0 1 1-1.861.733l-.46-1.166a1 1 0 0 1 .564-1.297Z")
+            path(d="M17.633 7.323A2 2 0 0 1 19 9.221v1.558a2 2 0 0 1-1.367 1.898l-.817.272a1 1 0 1 1-.632-1.898L17 10.78V9.221l-.816-.272a1 1 0 0 1 .632-1.898l.817.272Z")
+            path(d="M16.899 11.083a1 1 0 0 1 .518 1.316l-.5 1.15a1 1 0 1 1-1.834-.798l.5-1.15a1 1 0 0 1 1.316-.518Z")
+            path(d="M17.29 13.504a2 2 0 0 1-.375 2.309l-1.102 1.102a2 2 0 0 1-2.309.375l-.77-.385a1 1 0 1 1 .895-1.789l.77.385l1.102-1.102l-.385-.77a1 1 0 0 1 1.789-.894l.385.77Z")
+            path(d="M14.112 15.644a1 1 0 0 1-.563 1.297l-1.167.46a1 1 0 1 1-.733-1.861l1.166-.46a1 1 0 0 1 1.297.564Z")
+            path(d="M12.677 17.633A2 2 0 0 1 10.779 19H9.221a2 2 0 0 1-1.898-1.367l-.272-.817a1 1 0 0 1 1.898-.632L9.22 17h1.558l.272-.816a1 1 0 1 1 1.898.632l-.272.817Z")
+            path(d="M8.917 16.899a1 1 0 0 1-1.316.518l-1.15-.5a1 1 0 1 1 .798-1.834l1.15.5a1 1 0 0 1 .518 1.316Z")
+            path(d="M6.496 17.29a2 2 0 0 1-2.309-.375l-1.102-1.102a2 2 0 0 1-.375-2.309l.385-.77a1 1 0 1 1 1.789.895l-.385.77L5.601 15.5l.77-.385a1 1 0 0 1 .894 1.789l-.77.385Z")
+            path(d="M4.356 14.112a1 1 0 0 1-1.297-.563l-.46-1.167a1 1 0 0 1 1.861-.733l.46 1.166a1 1 0 0 1-.564 1.297Z")
+            path(d="M2.368 12.677A2 2 0 0 1 1 10.779V9.221a2 2 0 0 1 1.368-1.898l.816-.272a1 1 0 1 1 .632 1.898L3 9.22v1.558l.816.272a1 1 0 1 1-.632 1.898l-.816-.272Z")
+            path(d="M3.101 8.917a1 1 0 0 1-.518-1.316l.5-1.15a1 1 0 0 1 1.834.798l-.5 1.15a1 1 0 0 1-1.316.518Z")
+            path(d="M2.71 6.496a2 2 0 0 1 .375-2.309l1.102-1.102a2 2 0 0 1 2.309-.375l.77.385a1 1 0 1 1-.895 1.789l-.77-.385L4.5 5.601l.385.77a1 1 0 0 1-1.789.894l-.385-.77Z")
+            path(d="M5.888 4.356A1 1 0 0 1 6.45 3.06l1.167-.46a1 1 0 0 1 .733 1.861l-1.167.46a1 1 0 0 1-1.296-.564Z")
+            path(d="M7.323 2.368A2 2 0 0 1 9.221 1h1.558a2 2 0 0 1 1.898 1.368l.272.816a1 1 0 1 1-1.898.632L10.78 3H9.221l-.272.816a1 1 0 0 1-1.898-.632l.272-.816Z")
+            path(d="M11.083 3.101a1 1 0 0 1 1.316-.518l1.15.5a1 1 0 0 1-.798 1.834l-1.15-.5a1 1 0 0 1-.518-1.316Z")
+        | איך אנחנו עושים את זה?
+      
+      .content-grid
+        .content-text.fade-in
+          h3
+            svg(xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24")
+              path(
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+                d="m12 8l3.804 2.764M12 8l-3.804 2.764M12 8V5m3.804 5.764l-1.453 4.472m1.453-4.472L18.5 9.5m-4.149 5.736H9.65m4.702 0L16 17.5m-6.351-2.264l-1.453-4.472m1.453 4.472L8 17.5m.196-6.736L5.5 9.5m0 0L2.05 13M5.5 9.5l-1-4.115m14 4.115l3.45 3.5M18.5 9.5l1-4.115M12 5L8.624 2.584M12 5l3.376-2.416M8 17.5L3.338 17M8 17.5l2.5 4.388M16 17.5l4.662-.5M16 17.5l-2.5 4.388M22 12c0 5.523-4.477 10-10 10S2 17.523 2 12S6.477 2 12 2s10 4.477 10 10Z"
+              )
+            | עבודה מקצועית
+          ul
+            li צוות של מאמנים ומדריכים מוסמכים ומנוסים
+            li תכניות מותאמות אישית למגוון גילאים ורמות
+            li דגש על פיתוח כלים לחיים: ביטחון עצמי, משמעת עצמית, עבודת צוות ותקשורת
+            li שילוב של שיטות אימון חדשניות יחד עם ניסיון ורגישות אישית
+
+        .content-text.fade-in
+          h3
+            svg(xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 256 256")
+              path(
+                fill="currentColor"
+                d="M176 232a8 8 0 0 1-8 8H88a8 8 0 0 1 0-16h80a8 8 0 0 1 8 8Zm40-128a87.55 87.55 0 0 1-33.64 69.21A16.24 16.24 0 0 0 176 186v6a16 16 0 0 1-16 16H96a16 16 0 0 1-16-16v-6a16.24 16.24 0 0 0-6.23-12.66A87.59 87.59 0 0 1 40 104.49C39.74 56.83 78.26 17.14 125.88 16A88 88 0 0 1 216 104Zm-16 0a72 72 0 0 0-73.74-72c-39 .92-70.47 33.39-70.26 72.39a71.65 71.65 0 0 0 27.64 56.3A32 32 0 0 1 96 186v6h64v-6a32.15 32.15 0 0 1 12.47-25.35A71.65 71.65 0 0 0 200 104Zm-16.11-9.34a57.6 57.6 0 0 0-46.56-46.55a8 8 0 0 0-2.66 15.78c16.57 2.79 30.63 16.85 33.44 33.45A8 8 0 0 0 176 104a9 9 0 0 0 1.35-.11a8 8 0 0 0 6.54-9.23Z"
+              )
+            | גישה יצירתית
+          ul
+            li חשיבה יצירתית שמאפשרת לנו להוביל תכניות איכותיות
+            li שילוב של ספורט, ערכים והעצמה אישית
+            li התאמה אישית לכל ילד ומסגרת
+            li סביבה בטוחה ותומכת לצמיחה
+
+  // What Makes Us Unique Section
+  section.section
+    .container
+      .content-grid
+        .content-text.fade-in
+          h3
+            svg(xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24")
+              path(
+                fill="currentColor"
+                d="M21 4h-3V3a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1v1H3a1 1 0 0 0-1 1v3a4 4 0 0 0 4 4h1.54A6 6 0 0 0 11 13.91V16h-1a3 3 0 0 0-3 3v2a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-2a3 3 0 0 0-3-3h-1v-2.09A6 6 0 0 0 16.46 12H18a4 4 0 0 0 4-4V5a1 1 0 0 0-1-1ZM6 10a2 2 0 0 1-2-2V6h2v2a6 6 0 0 0 .35 2Zm8 8a1 1 0 0 1 1 1v1H9v-1a1 1 0 0 1 1-1Zm2-10a4 4 0 0 1-8 0V4h8Zm4 0a2 2 0 0 1-2 2h-.35A6 6 0 0 0 18 8V6h2Z"
+              )
+            | מה מייחד אותנו?
+          p
+            | אנחנו מגיעים עם תשוקה גדולה, ניסיון עשיר וחשיבה יצירתית שמאפשרת לנו להוביל תכניות איכותיות, חדשניות ומשמעותיות.
+          p
+            | הלקוחות שלנו – בתי ספר, הורים וילדים – בוחרים בנו כי אנחנו לא רק "מפעילים", אלא שותפים אמיתיים בתהליך ההתפתחות של הילדים.
+
+        .content-text.fade-in
+          h3
+            svg(xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24")
+              path(
+                fill="currentColor"
+                d="M19 20.5q-.898 0-1.587-.563q-.688-.562-.853-1.437H11q-1.458 0-2.479-1.021T7.5 15q0-1.458 1.021-2.479T11 11.5h2q1.031 0 1.766-.735t.734-1.769q0-1.033-.734-1.764Q14.03 6.5 13 6.5H7.44q-.17.875-.856 1.438T5 8.5q-1.042 0-1.77-.729q-.73-.728-.73-1.769q0-1.04.73-1.771Q3.957 3.5 5 3.5q.898 0 1.584.563q.685.562.856 1.437H13q1.458 0 2.479 1.021T16.5 9q0 1.458-1.021 2.479T13 12.5h-2q-1.031 0-1.766.735T8.5 15.004q0 1.033.734 1.764q.735.732 1.766.732h5.56q.17-.875.856-1.438T19 15.5q1.042 0 1.77.729q.73.728.73 1.769q0 1.04-.73 1.771q-.728.731-1.77.731ZM5 7.5q.617 0 1.059-.441Q6.5 6.617 6.5 6t-.441-1.059Q5.617 4.5 5 4.5t-1.059.441Q3.5 5.383 3.5 6t.441 1.059Q4.383 7.5 5 7.5Z"
+              )
+            | המטרה שלנו
+          p
+            | להפוך כל ילד לשחקן טוב יותר – ובנאדם חזק יותר, במגרש ומחוצה לו!
+          p
+            | אנחנו מאמינים שהספורט הוא כלי רב עוצמה לחינוך, העצמה ופיתוח אישי.
+
+  // Contact Section
+  section.section
+    .container
+      .contact-section.fade-in
+        h2.section-title
+          | רוצים להכיר אותנו יותר?
+        
+        p.cta-description
+          | צרו איתנו קשר, נשמח לספר, להיפגש ולהראות איך הספורט יכול להיות הרבה יותר מ'משחק'.
+
+        .contact-grid
+          .contact-item.fade-in
+            svg(xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24")
+              path(fill="currentColor" d="M19.44 13c-.22 0-.45-.07-.67-.12a9.44 9.44 0 0 1-1.31-.39a2 2 0 0 0-2.48 1l-.22.45a12.18 12.18 0 0 1-2.66-2a12.18 12.18 0 0 1-2-2.66l.42-.28a2 2 0 0 0 1-2.48a10.33 10.33 0 0 1-.39-1.31c-.05-.22-.09-.45-.12-.68a3 3 0 0 0-3-2.49h-3a3 3 0 0 0-3 3.41a19 19 0 0 0 16.52 16.46h.38a3 3 0 0 0 2-.76a3 3 0 0 0 1-2.25v-3a3 3 0 0 0-2.47-2.9Zm.5 6a1 1 0 0 1-.34.75a1.05 1.05 0 0 1-.82.25A17 17 0 0 1 4.07 5.22a1.09 1.09 0 0 1 .25-.82a1 1 0 0 1 .75-.34h3a1 1 0 0 1 1 .79q.06.41.15.81a11.12 11.12 0 0 0 .46 1.55l-1.4.65a1 1 0 0 0-.49 1.33a14.49 14.49 0 0 0 7 7a1 1 0 0 0 .76 0a1 1 0 0 0 .57-.52l.62-1.4a13.69 13.69 0 0 0 1.58.46q.4.09.81.15a1 1 0 0 1 .79 1Z")
+            h4 טלפון
+            p 054-4927583
+
+          .contact-item.fade-in
+            svg(xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 15 15")
+              path(
+                fill="currentColor"
+                fill-rule="evenodd"
+                d="m6.854 3.854l.8-.8c.644-.645 1.775-1.092 2.898-1.253a5.342 5.342 0 0 1 1.504-.02c.443.066.714.196.84.323c.127.126.257.397.323.84c.064.427.059.95-.02 1.504c-.16 1.123-.608 2.254-1.253 2.898L7.5 11.793l-1.146-1.146a.5.5 0 1 0-.708.707l1.5 1.5a.5.5 0 0 0 .708 0l.547-.548l1.17 1.951a.5.5 0 0 0 .783.097l2-2a.5.5 0 0 0 .141-.425l-.465-3.252l.624-.623c.855-.856 1.358-2.225 1.535-3.465c.09-.627.1-1.25.019-1.794c-.08-.528-.256-1.05-.604-1.399c-.349-.348-.871-.525-1.4-.604a6.333 6.333 0 0 0-1.793.02C9.17.987 7.8 1.49 6.946 2.345l-.623.624l-3.252-.465a.5.5 0 0 0-.425.141l-2 2a.5.5 0 0 0 .097.783l1.95 1.17l-.547.547a.5.5 0 0 0 0 .708l1.5 1.5a.5.5 0 1 0 .708-.708L3.207 7.5l.647-.646l3-3Zm3.245 9.34l-.97-1.617l2.017-2.016l.324 2.262l-1.37 1.37ZM3.423 5.87l2.016-2.016l-2.262-.324l-1.37 1.37l1.616.97Zm-1.07 4.484a.5.5 0 1 0-.707-.708l-1 1a.5.5 0 1 0 .708.707l1-1Zm1.5 1.5a.5.5 0 1 0-.707-.707l-2 2a.5.5 0 0 0 .708.707l2-2Zm1.5 1.5a.5.5 0 1 0-.707-.708l-1 1a.5.5 0 1 0 .708.707l1-1ZM9.5 6.748a1.249 1.249 0 1 0 0-2.498a1.249 1.249 0 0 0 0 2.498Z"
+                clip-rule="evenodd"
+              )
+            h4 אימייל
+            p amitkorkus88@gmail.com
+
+        .cta-section
+          a.btn(href="/contact")
+            | צרו קשר עכשיו
+            svg(xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24")
+              g(fill="none" stroke="currentColor" stroke-width="2")
+                path(d="M4 12a8 8 0 1 1 16 0v5.09c0 .848 0 1.27-.126 1.609a2 2 0 0 1-1.175 1.175C18.36 20 17.937 20 17.09 20H12a8 8 0 0 1-8-8z")
+                path(stroke-linecap="round" stroke-linejoin="round" d="M9 11h6m-3 4h3")
+

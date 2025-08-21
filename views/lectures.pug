@@ -1,0 +1,673 @@
+extends layout
+
+block content
+  style.
+    body {
+      direction: rtl;
+      font-family: 'Inter', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.6;
+      color: #e2e8f0;
+      background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+      overflow-x: hidden;
+    }
+
+    /* Hero Section - Wisdom Theme */
+    .hero {
+      background: linear-gradient(135deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)), url('/WhatsApp Image 2025-08-11 at 14.28.36 (2).jpeg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      color: white;
+      padding: 120px 0 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.4) 100%);
+      opacity: 1;
+    }
+
+
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+      padding: 0 24px;
+    }
+
+    .hero-title {
+      font-size: clamp(2.5rem, 6vw, 3.5rem);
+      font-weight: 700;
+      margin-bottom: 24px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      animation: fadeInDown 1s ease-out;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      background: linear-gradient(45deg, #14b8a6, #06b6d4, #0ea5e9);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1.1rem, 3.5vw, 1.4rem);
+      margin-bottom: 28px;
+      opacity: 0.9;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      animation: fadeInUp 1s ease-out 0.3s both;
+      line-height: 1.5;
+      font-weight: 500;
+    }
+
+    /* Content Sections - Wisdom Theme */
+    .content-section {
+      padding: 80px 0;
+      background: #1a202c;
+      position: relative;
+    }
+
+    .content-section:nth-child(even) {
+      background: #2d3748;
+    }
+
+    .content-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #14b8a6, #06b6d4, #0ea5e9, #14b8a6);
+      background-size: 200% 100%;
+      animation: gradientShift 3s ease-in-out infinite;
+    }
+
+    @keyframes gradientShift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    /* Hero Animations */
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .content-grid-full-width {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+
+    .content-text {
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: 20px;
+      padding: 40px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .content-text-full-width {
+      padding: 40px; /* Adjust padding for full-width content */
+    }
+
+    /* Full-width section styling */
+    .content-grid-full-width {
+      grid-template-columns: 1fr;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .content-text-full-width {
+      text-align: center;
+      background: linear-gradient(135deg, rgba(6, 182, 212, 0.08), rgba(8, 145, 178, 0.08));
+      border: 2px solid rgba(6, 182, 212, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .content-text-full-width::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: linear-gradient(90deg, #06b6d4, #0891b2, #06b6d4);
+      background-size: 200% 100%;
+      animation: gradientShift 3s ease-in-out infinite;
+    }
+
+    .content-text-full-width h3 {
+      font-size: 2rem;
+      margin-bottom: 30px;
+      background: linear-gradient(45deg, #06b6d4, #0891b2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .content-text-full-width ol {
+      text-align: right;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .content-text-full-width ol li {
+      background: rgba(6, 182, 212, 0.05);
+      border: 1px solid rgba(6, 182, 212, 0.1);
+      border-radius: 15px;
+      padding: 20px 25px 20px 60px;
+      margin-bottom: 20px;
+      position: relative;
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+
+    .content-text-full-width ol li:hover {
+      background: rgba(6, 182, 212, 0.1);
+      border-color: rgba(6, 182, 212, 0.2);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(6, 182, 212, 0.15);
+    }
+
+    .content-text-full-width ol li::before {
+      content: counter(ol-counter);
+      counter-increment: ol-counter;
+      background: linear-gradient(135deg, #06b6d4, #0891b2);
+      color: white;
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.1rem;
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      box-shadow: 0 4px 15px rgba(6, 182, 212, 0.3);
+    }
+
+    .content-text-full-width::after {
+      content: '';
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      background: radial-gradient(circle, rgba(6, 182, 212, 0.1) 0%, transparent 70%);
+      border-radius: 50%;
+      opacity: 0.6;
+    }
+
+    .content-text-full-width .steps-icon {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      width: 40px;
+      height: 40px;
+      background: rgba(6, 182, 212, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0.7;
+    }
+
+    .content-text-full-width ol li::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(135deg, #06b6d4, #0891b2);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      border-radius: 0 2px 2px 0;
+    }
+
+    .content-text-full-width ol li:hover::after {
+      opacity: 1;
+    }
+
+    @media (max-width: 768px) {
+      .content-text-full-width {
+        padding: 30px 20px;
+      }
+      
+      .content-text-full-width h3 {
+        font-size: 1.6rem;
+        margin-bottom: 25px;
+      }
+      
+      .content-text-full-width ol li {
+        padding: 18px 20px 18px 55px;
+        margin-bottom: 15px;
+      }
+      
+      .content-text-full-width ol li::before {
+        width: 30px;
+        height: 30px;
+        font-size: 1rem;
+        right: 15px;
+      }
+    }
+
+
+
+    .content-text::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #14b8a6, #06b6d4);
+    }
+
+    .content-text h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+      color: #06b6d4;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .content-text h3 svg {
+      width: 28px;
+      height: 28px;
+      color: #14b8a6;
+    }
+
+    .content-text p {
+      margin-bottom: 20px;
+      line-height: 1.7;
+      color: #e2e8f0;
+    }
+
+    .content-text ul, .content-text ol {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .content-text li {
+      margin-bottom: 15px;
+      padding-right: 60px;
+      color: #e2e8f0;
+      position: relative;
+      line-height: 1.6;
+    }
+
+    .content-text li::before {
+      content: '•';
+      position: absolute;
+      right: 20px;
+      top: 0;
+      color: #06b6d4;
+      font-size: 20px;
+      font-weight: bold;
+      line-height: 1;
+    }
+
+    .content-text ol li::before {
+      content: counter(list-item);
+      counter-increment: list-item;
+      color: #06b6d4;
+      font-weight: 600;
+      margin-left: 25px;
+      position: absolute;
+      right: 0;
+      top: 0;
+      line-height: 1;
+    }
+
+    .content-text ol {
+      counter-reset: list-item;
+    }
+
+    .highlight-box {
+      background: linear-gradient(135deg, rgba(20, 184, 166, 0.1), rgba(6, 182, 212, 0.1));
+      border: 1px solid rgba(20, 184, 166, 0.2);
+      border-radius: 20px;
+      padding: 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .highlight-box::before {
+      content: '';
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 32px;
+      height: 32px;
+      background: #06b6d4;
+      border-radius: 50%;
+      opacity: 0.3;
+    }
+
+    .highlight-box h3 {
+      color: #06b6d4;
+      margin-bottom: 20px;
+      font-size: 1.8rem;
+    }
+
+    .highlight-box p {
+      font-size: 1.1rem;
+      color: #e2e8f0;
+      margin: 0;
+    }
+
+    /* Section Titles - Wisdom Theme */
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 60px;
+      color: #06b6d4;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background: linear-gradient(90deg, #14b8a6, #06b6d4, #0ea5e9);
+      border-radius: 2px;
+    }
+
+    .section-title svg {
+      width: 32px;
+      height: 32px;
+      color: #14b8a6;
+    }
+
+    /* CTA Section - Wisdom Theme */
+    .cta-section {
+      text-align: center;
+      padding: 100px 60px;
+      background: linear-gradient(135deg, rgba(20, 184, 166, 0.05), rgba(6, 182, 212, 0.05));
+      border-radius: 30px;
+      position: relative;
+      overflow: hidden;
+    }
+
+
+
+    .cta-description {
+      font-size: 1.2rem;
+      margin-bottom: 40px;
+      color: #e2e8f0;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-button-container {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 32px;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #14b8a6, #06b6d4);
+      color: #1a202c;
+      box-shadow: 0 8px 25px rgba(20, 184, 166, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 35px rgba(20, 184, 166, 0.4);
+    }
+
+    .btn-secondary {
+      background: linear-gradient(135deg, #06b6d4, #0ea5e9);
+      color: #1a202c;
+      box-shadow: 0 8px 25px rgba(6, 182, 212, 0.3);
+    }
+
+    .btn-secondary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 35px rgba(6, 182, 212, 0.4);
+    }
+
+    .btn svg {
+      width: 24px;
+      height: 24px;
+    }
+
+
+
+    /* Responsive Design */
+    @media (max-width: 1024px) {
+      .content-grid {
+        gap: 40px;
+      }
+      
+      .cta-section {
+        padding: 80px 40px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .content-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+      
+      .content-text {
+        padding: 30px;
+      }
+      
+
+      
+      .cta-section {
+        padding: 60px 30px;
+      }
+      
+      .cta-button-container {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .btn {
+        width: 100%;
+        max-width: 300px;
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero {
+        padding: 80px 0 60px;
+      }
+      
+      .content-section {
+        padding: 60px 0;
+      }
+      
+      .content-text {
+        padding: 25px;
+      }
+      
+      .cta-section {
+        padding: 50px 20px;
+      }
+      
+      .section-title {
+        font-size: 2rem;
+        margin-bottom: 40px;
+      }
+    }
+
+
+
+
+
+  // Hero Section
+  section.hero
+    .hero-content
+      h1.hero-title הרצאה: חינוך בגישה אישית
+      p.hero-subtitle להבין כל ילד ולגעת בלב
+
+  // Main Content Section
+  section.content-section
+    .container
+      .content-grid
+        .content-text.fade-in
+          h3 
+            svg(xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24")
+              path(fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 19a9 9 0 0 1 9 0a9 9 0 0 1 9 0M3 6a9 9 0 0 1 9 0a9 9 0 0 1 9 0M3 6v13m9-13v13m9-13v13")
+            | למה הרצאה זו חשובה?
+          p
+            | בתור איש חינוך עם ניסיון של מעל 10 שנים בבתי ספר, עמית קורקוש מביא איתו מסר מרגש וחשוב: אין ילד רע – יש ילד שרע לו.
+          p
+            | בהרצאה זו נצלול לעומק החשיבות של הקשר האישי בין המורה לתלמיד, ונלמד איך לתת לכל ילד את הכלים והבנה שהוא זקוק להם כדי לפרוח.
+
+        .content-text.fade-in
+          h3 
+            svg(xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 256")
+              path(fill="currentColor" d="M176 232a8 8 0 0 1-8 8H88a8 8 0 0 1 0-16h80a8 8 0 0 1 8 8Zm40-128a87.55 87.55 0 0 1-33.64 69.21A16.24 16.24 0 0 0 176 186v6a16 16 0 0 1-16 16H96a16 16 0 0 1-16-16v-6a16 16 0 0 0-6.23-12.66A87.59 87.59 0 0 1 40 104.49C39.74 56.83 78.26 17.14 125.88 16A88 88 0 0 1 216 104Zm-16 0a72 72 0 0 0-73.74-72c-39 .92-70.47 33.39-70.26 72.39a71.65 71.65 0 0 0 27.64 56.3A32 32 0 0 1 96 186v6h64v-6a32.15 32.15 0 0 1 12.47-25.35A71.65 71.65 0 0 0 200 104Zm-16.11-9.34a57.6 57.6 0 0 0-46.56-46.55a8 8 0 0 0-2.66 15.78c16.57 2.79 30.63 16.85 33.44 33.45A8 8 0 0 0 176 104a9 9 0 0 0 1.35-.11a8 8 0 0 0 6.54-9.23Z")
+            | על מה נרחיב?
+          ul
+            li חשיבות ההקשבה וההבנה לעומק של כל תלמיד
+            li זיהוי ותגובתיות לקשיים אישיים ומנטליים של הילדים
+            li כלים פרקטיים להתמודדות עם אתגרים בכיתה ובחיי היום-יום
+            li כיצד ליצור סביבה חינוכית תומכת ומעצימה
+            li סיפורים אישיים מהשטח שממחישים את הכוח של הגישה הנכונה
+
+  // Target Audience Section
+  section.content-section
+    .container
+      .content-grid
+        .content-text.fade-in
+          h3 
+            svg(xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24")
+              g(fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5")
+                path(d="M1 20v-1a7 7 0 0 1 7-7v0a7 7 0 0 1 7 7v1")
+                path(d="M13 14v0a5 5 0 0 1 5-5v0a5 5 0 0 1 5 5v.5")
+                path(stroke-linejoin="round" d="M8 12a4 4 0 1 0 0-8a4 4 0 0 0 0 8Zm10-3a3 3 0 1 0 0-6a3 3 0 0 0 0 6Z")
+            | מי צריך להגיע?
+          ul
+            li מורים ומחנכים בבתי ספר
+            li מדריכים ומאמני ספורט העובדים עם ילדים
+            li הורים שמעוניינים להבין טוב יותר את ילדיהם
+            li כל מי שמעורב בחינוך ובטיפול בילדים וחשוב לו לקדם סביבה חיובית ותומכת
+
+        .content-text.fade-in
+          h3 
+            svg(xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 20 20")
+              path(fill="currentColor" d="M1 4c0-1.1.9-2 2-2h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4zm2 2v12h14V6H3zm2-6h2v2H5V0zm8 0h2v2h-2V0zM5 9h2v2H5V9zm0 4h2v2H5v-2zm4-4h2v2H9V9zm0 4h2v2H9v-2zm4-4h2v2h-2V9zm0 4h2v2h-2v-2z")
+            | מבנה ההרצאה
+          ul
+            li משך: 45 דקות הרצאה + 15 דקות לשאלות ותשובות
+            li סגנון: חווייתי, מעורר השראה, מעשי ועם דגש על סיפורים אישיים
+
+        .content-text.fade-in
+            h3 
+              svg(xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24")
+                path(fill="currentColor" d="M12.001 3.818a6.228 6.228 0 0 1 8.51 9.087l-5.224 5.225h-.001L12 21.415l-7.28-7.279l-1.23-1.232c-.001 0 0 0 0 0A6.228 6.228 0 0 1 12 3.818Zm3.285 11.485l3.811-3.812a4.228 4.228 0 1 0-5.98-5.98L12 6.627L10.883 5.51a4.228 4.228 0 1 0-5.98 5.98l1.232 1.232L12 18.587l3.285-3.285Z")
+              | המטרה שלנו
+            p
+              | להעניק לכל איש חינוך את הכלים וההבנה הנכונים כדי לגעת בלב כל תלמיד ולעזור להם לפרוח!
+
+
+
+  // CTA Section
+  section.content-section
+    .container
+      .cta-section
+        h2.section-title 
+          | בואו נקדם שינוי אמיתי
+        p.cta-description
+          | מוכנים לקדם שינוי אמיתי בגישה לילדים? צרו קשר עכשיו וקבעו הרצאה לקהילה שלכם!
+        .cta-button-container
+          a.btn.btn-primary(href="/contact") 
+            | צרו קשר עכשיו
+            svg(xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24")
+              g(fill="none" stroke="currentColor" stroke-width="2")
+                path(d="M4 12a8 8 0 1 1 16 0v5.09c0 .848 0 1.27-.126 1.609a2 2 0 0 1-1.175 1.175C18.36 20 17.937 20 17.09 20H12a8 8 0 0 1-8-8z")
+                path(stroke-linecap="round" stroke-linejoin="round" d="M9 11h6m-3 4h3")
+
+
+
+

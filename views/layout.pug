@@ -1,0 +1,288 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title דרך לחיים
+    style.
+      /* Reset */
+      *, *::before, *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+          Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+        background-color: #1a202c;
+        color: #e2e8f0;
+        line-height: 1.6;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+        transition: color 0.3s ease;
+      }
+
+      a:hover,
+      a:focus {
+        color: #0070f3;
+        outline: none;
+      }
+
+      /* NAVIGATION */
+      nav {
+        background-color: rgba(26, 32, 44, 0.95);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(0, 112, 243, 0.2);
+        padding: 0.75rem 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        transition: all 0.3s ease;
+      }
+
+      nav.scrolled {
+        background-color: rgba(26, 32, 44, 0.98);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      }
+
+      nav .logo {
+        font-weight: 700;
+        font-size: 1.5rem;
+        background: linear-gradient(135deg, #f7fafc 0%, #0070f3 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        user-select: none;
+        transition: all 0.3s ease;
+      }
+
+      nav .logo:hover {
+        background: linear-gradient(135deg, #0070f3 0%, #38a169 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      nav ul {
+        list-style: none;
+        display: flex;
+        gap: 1.5rem;
+        align-items: center;
+      }
+
+      nav ul li {
+        font-weight: 500;
+      }
+
+      nav ul li a {
+        color: #cbd5e0;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        position: relative;
+        transition: all 0.3s ease;
+      }
+
+      nav ul li a:hover {
+        color: #f7fafc;
+        background: rgba(0, 112, 243, 0.1);
+      }
+
+      nav ul li a::after {
+        content: "";
+        display: block;
+        width: 0;
+        height: 2px;
+        background: #0070f3;
+        transition: width 0.3s;
+        position: absolute;
+        bottom: -2px;
+        left: 50%;
+        center;
+        transform: translateX(-50%);
+      }
+
+      nav ul li a:hover::after,
+      nav ul li a:focus::after {
+        width: 80%;
+      }
+
+      /* Hamburger for mobile */
+      .menu-toggle {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+        width: 25px;
+        height: 20px;
+        justify-content: space-between;
+      }
+
+      .menu-toggle span {
+        display: block;
+        height: 3px;
+        background: #f7fafc;
+        border-radius: 2px;
+        transition: all 0.3s ease;
+      }
+
+      .menu-toggle:hover span {
+        background: #0070f3;
+      }
+
+      /* Footer */
+      footer {
+        background-color: #1a202c;
+        color: #cbd5e0;
+        padding: 1.5rem 1.5rem;
+        text-align: center;
+        margin-top: auto;
+        font-size: 0.9rem;
+        border-top: 1px solid rgba(0, 112, 243, 0.2);
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        nav ul {
+          position: fixed;
+          top: 56px;
+          right: 0;
+          background: rgba(26, 32, 44, 0.98);
+          backdrop-filter: blur(10px);
+          height: calc(100vh - 56px);
+          width: 200px;
+          flex-direction: column;
+          gap: 1rem;
+          padding: 1rem 1.5rem;
+          box-shadow: -2px 0 8px rgba(0,0,0,0.3);
+          transform: translateX(100%);
+          transition: transform 0.3s ease;
+          border-left: 1px solid rgba(0, 112, 243, 0.2);
+        }
+
+        nav ul.open {
+          transform: translateX(0);
+        }
+
+        nav ul li {
+          font-size: 1.1rem;
+          width: 100%;
+          border-bottom: 1px solid rgba(0, 112, 243, 0.1);
+        }
+
+        nav ul li a {
+          display: block;
+          padding: 1rem 0;
+          text-align: center;
+          border-radius: 0;
+        }
+
+        .menu-toggle {
+          display: flex;
+        }
+      }
+
+      /* Laptop and larger screens - smaller navbar text */
+      @media (min-width: 1024px) {
+        nav .logo {
+          font-size: 1.25rem;
+        }
+
+        nav ul li a {
+          font-size: 0.9rem;
+          padding: 0.4rem 0.8rem;
+        }
+
+        nav {
+          padding: 0.6rem 1.25rem;
+        }
+      }
+  
+  body
+    nav#navbar
+      a.logo(href="/") דרך לחיים
+      ul#nav-menu
+        li: a(href="/") בית
+        li: a(href="/about") אודות
+        li: a(href="/birthday-parties") ימי הולדת
+        li: a(href="/derech-lechaim") דרך לחיים
+        li: a(href="/personal-training") אימונים אישיים
+        li: a(href="/school-events") ימי שיא
+        li: a(href="/lectures") הרצאות
+        li: a(href="/football-training") כדורגל
+        li: a(href="/gallery") גלריה
+        li: a(href="/contact") צור קשר
+      .menu-toggle#menu-toggle
+        span
+        span
+        span
+
+    block content
+
+    footer
+      | דרך לחיים - כל הזכויות שמורות  #{new Date().getFullYear()}  &copy;
+      br
+      a(href="https://www.orion-webstudio.com/" target="_blank" style="color: #0070f3; text-decoration: none; font-size: 0.9rem;") נבנה על ידי Orion Web Studio
+
+    script.
+      // Mobile menu toggle
+      const menuToggle = document.getElementById('menu-toggle');
+      const navMenu = document.getElementById('nav-menu');
+      const navbar = document.getElementById('navbar');
+
+      // Mobile menu toggle
+      menuToggle.addEventListener('click', () => {
+        navMenu.classList.toggle('open');
+      });
+
+      // Close menu on link click (mobile)
+      navMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          if(navMenu.classList.contains('open')) {
+            navMenu.classList.remove('open');
+          }
+        });
+      });
+
+      // Add scrolled class on scroll
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+          navbar.classList.add('scrolled');
+        } else {
+          navbar.classList.remove('scrolled');
+        }
+      });
+
+             // Set active navigation link based on current page
+       function setActiveNavLink() {
+         const currentPath = window.location.pathname;
+         const navLinks = document.querySelectorAll('#nav-menu a');
+         
+         navLinks.forEach(link => {
+           link.classList.remove('active');
+           if (link.getAttribute('href') === currentPath) {
+             link.classList.add('active');
+           }
+         });
+         
+         // Special case for home page
+         if (currentPath === '/' || currentPath === '') {
+           const homeLink = document.querySelector('#nav-menu a[href="/"]');
+           if (homeLink) {
+             homeLink.classList.add('active');
+           }
+         }
+       }
+
+       // Set active link on page load
+       setActiveNavLink();

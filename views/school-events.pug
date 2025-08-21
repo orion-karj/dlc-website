@@ -1,0 +1,577 @@
+extends layout
+
+block content
+  style.
+    body {
+      direction: rtl;
+      font-family: 'Inter', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.6;
+      color: #e2e8f0;
+      background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+      overflow-x: hidden;
+    }
+
+    /* Hero Section - Education Theme */
+    .hero {
+      background: linear-gradient(135deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)), url('/WhatsApp Image 2025-08-11 at 14.28.36 (2).jpeg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      color: white;
+      padding: 120px 0 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.4) 100%);
+      opacity: 1;
+    }
+
+
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+      padding: 0 24px;
+    }
+
+    .hero-title {
+      font-size: clamp(2.5rem, 6vw, 3.5rem);
+      font-weight: 700;
+      margin-bottom: 24px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      animation: fadeInDown 1s ease-out;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      background: linear-gradient(45deg, #8b5cf6, #6366f1, #a855f7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1.1rem, 3.5vw, 1.4rem);
+      margin-bottom: 28px;
+      opacity: 0.9;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      animation: fadeInUp 1s ease-out 0.3s both;
+      line-height: 1.5;
+      font-weight: 500;
+    }
+
+    /* Content Sections - Education Theme */
+    .content-section {
+      padding: 80px 0;
+      background: #1a202c;
+      position: relative;
+    }
+
+    .content-section:nth-child(even) {
+      background: #2d3748;
+    }
+
+    .content-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #8b5cf6, #6366f1, #a855f7, #8b5cf6);
+      background-size: 200% 100%;
+      animation: gradientShift 3s ease-in-out infinite;
+    }
+
+    @keyframes gradientShift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    /* Hero Animations */
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .content-text {
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: 20px;
+      padding: 40px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .content-text::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #8b5cf6, #6366f1);
+    }
+
+    .content-text h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+      color: #a855f7;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .content-text h3 svg {
+      width: 28px;
+      height: 28px;
+      color: #8b5cf6;
+    }
+
+    .content-text p {
+      margin-bottom: 20px;
+      line-height: 1.7;
+      color: #e2e8f0;
+    }
+
+    .content-text ul, .content-text ol {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .content-text li {
+      margin-bottom: 15px;
+      padding-right: 60px;
+      color: #e2e8f0;
+      position: relative;
+      line-height: 1.6;
+    }
+
+    .content-text li::before {
+      content: '◆';
+      position: absolute;
+      right: 30px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #8b5cf6;
+      font-size: 16px;
+      font-weight: bold;
+      text-shadow: 0 2px 4px rgba(139, 92, 246, 0.3);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      animation: pulse 2s infinite;
+    }
+
+    .content-text li:hover::before {
+      transform: translateY(-50%) rotate(45deg) scale(1.3);
+      color: #7c3aed;
+      text-shadow: 0 4px 8px rgba(139, 92, 246, 0.5);
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
+    }
+
+    .content-text ol li::before {
+      content: counter(ol-counter);
+      counter-increment: ol-counter;
+      color: #a855f7;
+      font-weight: 600;
+      margin-left: 25px;
+      position: absolute;
+      right: 0;
+      top: 0;
+      line-height: 1;
+      background: linear-gradient(135deg, #a855f7, #8b5cf6);
+      color: white;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      box-shadow: 0 4px 12px rgba(168, 85, 247, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .content-text ol li:hover::before {
+      transform: scale(1.1);
+      box-shadow: 0 6px 16px rgba(168, 85, 247, 0.4);
+    }
+
+    .content-text ol li {
+      background: rgba(168, 85, 247, 0.05);
+      border: 1px solid rgba(168, 85, 247, 0.1);
+      border-radius: 12px;
+      padding: 20px 25px 20px 20px;
+      margin-bottom: 15px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .content-text ol li:hover {
+      background: rgba(168, 85, 247, 0.08);
+      border-color: rgba(168, 85, 247, 0.2);
+      transform: translateX(-5px);
+      box-shadow: 0 8px 25px rgba(168, 85, 247, 0.15);
+    }
+
+    .content-text ol li::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(135deg, #a855f7, #8b5cf6);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .content-text ol li:hover::after {
+      opacity: 1;
+    }
+
+    .content-text ol {
+      counter-reset: ol-counter;
+    }
+
+    .highlight-box {
+      background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(99, 102, 241, 0.1));
+      border: 1px solid rgba(139, 92, 246, 0.2);
+      border-radius: 20px;
+      padding: 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .highlight-box::before {
+      content: '';
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 32px;
+      height: 32px;
+      background: #8b5cf6;
+      border-radius: 50%;
+      opacity: 0.3;
+    }
+
+    .highlight-box h3 {
+      color: #a855f7;
+      margin-bottom: 20px;
+      font-size: 1.8rem;
+    }
+
+    .highlight-box p {
+      font-size: 1.1rem;
+      color: #e2e8f0;
+      margin: 0;
+    }
+
+    /* Section Titles - Education Theme */
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 60px;
+      color: #a855f7;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background: linear-gradient(90deg, #8b5cf6, #6366f1, #a855f7);
+      border-radius: 2px;
+    }
+
+    .section-title svg {
+      width: 32px;
+      height: 32px;
+      color: #8b5cf6;
+    }
+
+    /* CTA Section - Education Theme */
+    .cta-section {
+      text-align: center;
+      padding: 100px 60px;
+      background: linear-gradient(135deg, rgba(139, 92, 246, 0.05), rgba(99, 102, 241, 0.05));
+      border-radius: 30px;
+      position: relative;
+      overflow: hidden;
+    }
+
+
+
+    .cta-description {
+      font-size: 1.2rem;
+      margin-bottom: 40px;
+      color: #e2e8f0;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-button-container {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 32px;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #8b5cf6, #a855f7);
+      color: #1a202c;
+      box-shadow: 0 8px 25px rgba(139, 92, 246, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 35px rgba(139, 92, 246, 0.4);
+    }
+
+    .btn-secondary {
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      color: #1a202c;
+      box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3);
+    }
+
+    .btn-secondary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 35px rgba(99, 102, 241, 0.4);
+    }
+
+    .btn svg {
+      width: 24px;
+      height: 24px;
+    }
+
+
+
+    /* Responsive Design */
+    @media (max-width: 1024px) {
+      .content-grid {
+        gap: 40px;
+      }
+      
+      .cta-section {
+        padding: 80px 40px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .content-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+      
+      .content-text {
+        padding: 30px;
+      }
+      
+
+      
+      .cta-section {
+        padding: 60px 30px;
+      }
+      
+      .cta-button-container {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .btn {
+        width: 100%;
+        max-width: 300px;
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero {
+        padding: 80px 0 60px;
+      }
+      
+      .content-section {
+        padding: 60px 0;
+      }
+      
+      .content-text {
+        padding: 25px;
+      }
+      
+      .cta-section {
+        padding: 50px 20px;
+      }
+      
+      .section-title {
+        font-size: 2rem;
+        margin-bottom: 40px;
+      }
+    }
+
+
+
+
+
+  // Hero Section
+  section.hero
+    .hero-content
+      h1.hero-title ימי שיא לבתי ספר
+      p.hero-subtitle חוויה שמחברת את כולם
+
+  // Main Content Section
+  section.content-section
+    .container
+      .content-grid
+        .content-text.fade-in
+          h3 
+            svg(xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24")
+              g(fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2")
+                path(d="m4 6l8-4l8 4m-2 4l4 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-8l4-2")
+                path(d="M14 22v-4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v4m8-17v17M6 5v17")
+                circle(cx="12" cy="9" r="2")
+            | חוויה שמחברת את כולם
+          p
+            | דמיינו את כל בית הספר שלכם מתמלא בצחוק, מוזיקה ואנרגיות שלא רואים כל יום. הילדים רצים בין תחנות ספורט צבעוניות, מעודדים אחד את השני, משתפים פעולה ומגלים בעצמם יכולות שלא ידעו שיש להם.
+          p
+            | זה לא סתם עוד יום חופשי – זו חוויה שתיזכר הרבה אחרי שהפעמון יצלצל.
+
+        .content-text.fade-in
+          h3 
+            svg(xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 256")
+              path(fill="currentColor" d="m197.58 129.06l-51.61-19l-19-51.65a15.92 15.92 0 0 0-29.88 0L78.07 110l-51.65 19a15.92 15.92 0 0 0 0 29.88L78 178l19 51.62a15.92 15.92 0 0 0 29.88 0l19-51.61l51.65-19a15.92 15.92 0 0 0 0-29.88ZM140.39 163a15.87 15.87 0 0 0-9.43 9.43l-19 51.46L93 172.39a15.87 15.87 0 0 0-9.39-9.39l-51.46-19l51.46-19a15.87 15.87 0 0 0 9.39-9.39l19-51.46l19 51.46a15.87 15.87 0 0 0 9.43 9.43l51.46 19ZM144 40a8 8 0 0 1 8-8h16V16a8 8 0 0 1 16 0v16h16a8 8 0 0 1 0 16h-16v16a8 8 0 0 1-16 0V48h-16a8 8 0 0 1-8-8Zm104 48a8 8 0 0 1-8 8h-8v8a8 8 0 0 1-16 0v-8h-8a8 8 0 0 1 0-16h8v-8a8 8 0 0 1 16 0v8h8a8 8 0 0 1 8 8Z")
+            | מה הופך את ימי השיא שלנו למיוחדים?
+          p
+            | אנחנו לא "רק" עושים פעילות ספורט – אנחנו יוצרים יום מלא באתגרים, משחקים והפעלות שכולם יכולים להשתתף בהם. הכל מלווה במסרים ערכיים של עבודת צוות, התמדה, כבוד הדדי והובלה.
+          p
+            | והכי חשוב – כל הפעילות מתבצעת בליווי מאמנים ומדריכים מוסמכים ומנוסים, שיודעים איך לסחוף ילדים ובני נוער ולהוציא מהם את המיטב.
+
+  // How It Looks Section
+  section.content-section
+    .container
+      .content-grid
+        .content-text.fade-in
+          h3 
+            svg(xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 16 16")
+              path(fill="currentColor" fill-rule="evenodd" d="M8 9.984C10.403 9.506 12 7.48 12 5a4 4 0 0 0-8 0c0 2.48 1.597 4.506 4 4.984ZM13 5c0 2.837-1.789 5.227-4.52 5.901l.244.487a.25.25 0 1 1-.448.224l-.008-.017c.008.11.02.202.037.29c.054.27.161.488.419 1.003c.288.578.235 1.15.076 1.629c-.157.469-.422.867-.588 1.115l-.004.007a.25.25 0 1 1-.416-.278c.168-.252.4-.6.533-1.003c.133-.396.163-.824-.049-1.246l-.013-.028c-.24-.48-.38-.758-.448-1.102a3.177 3.177 0 0 1-.052-.45l-.04.08a.25.25 0 1 1-.447-.224l.244-.487C4.789 10.227 3 7.837 3 5a5 5 0 0 1 10 0Zm-6.938-.495a2.003 2.003 0 0 1 1.443-1.443C7.773 2.994 8 2.776 8 2.5c0-.276-.226-.504-.498-.459a3.003 3.003 0 0 0-2.46 2.461c-.046.272.182.498.458.498s.494-.227.562-.495Z")
+            | איך זה נראה בשטח?
+          ul
+            li תחנות כדורגל, אתלטיקה, קליעה לסל ואתגרי כוח
+            li משחקי גיבוש שגורמים גם לילד הביישן ביותר להשתתף
+            li תחרויות נושאות פרסים שמעודדות מאמץ והצלחה
+            li מוזיקה מקפיצה שיוצרת אווירת חגיגה אמיתית
+
+        .content-text.fade-in
+          h3 
+            svg(xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24")
+              path(fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10.704 4.325a1.5 1.5 0 0 1 2.592 0l1.818 3.12a1.5 1.5 0 0 0 .978.712l3.53.764a1.5 1.5 0 0 1 .8 2.465l-2.405 2.693a1.5 1.5 0 0 0-.374 1.15l.363 3.593a1.5 1.5 0 0 1-2.097 1.524l-3.304-1.456a1.5 1.5 0 0 0-1.21 0l-3.304 1.456a1.5 1.5 0 0 1-2.097-1.524l.363-3.593a1.5 1.5 0 0 0-.373-1.15l-2.406-2.693a1.5 1.5 0 0 1 .8-2.465l3.53-.764a1.5 1.5 0 0 0 .979-.711z")
+            | למה בתי ספר מזמינים אותנו שוב ושוב?
+          p
+            | כי הם רואים את השילוב המנצח – כיף אמיתי + ערכים לחיים. יום אחד שבו כולם מרגישים חלק, כולם משתתפים, וכולם יוצאים עם חיוך גדול.
+
+
+
+        .content-text.fade-in
+            h3 
+              svg(xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24")
+                path(fill="currentColor" d="M21 4h-3V3a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1v1H3a1 1 0 0 0-1 1v3a4 4 0 0 0 4 4h1.54A6 6 0 0 0 11 13.91V16h-1a3 3 0 0 0-3 3v2a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-2a3 3 0 0 0-3-3h-1v-2.09A6 6 0 0 0 16.46 12H18a4 4 0 0 0 4-4V5a1 1 0 0 0-1-1ZM6 10a2 2 0 0 1-2-2V6h2v2a6 6 0 0 0 .35 2Zm8 8a1 1 0 0 1 1 1v1H9v-1a1 1 0 0 1 1-1Zm2-10a4 4 0 0 1-8 0V4h8Zm4 0a2 2 0 0 1-2 2h-.35A6 6 0 0 0 18 8V6h2Z")
+              | המטרה שלנו
+            p
+              | ליצור יום שיא בלתי נשכח שמחבר את כל התלמידים, מחזק ערכים ומשאיר זיכרונות מדהימים!
+
+  // CTA Section
+  section.content-section
+    .container
+      .cta-section
+        h2.section-title 
+          | בואו ניצור יחד את יום השיא שלכם
+        p.cta-description
+          | מוכנים ליצור חוויה בלתי נשכחת לכל בית הספר? צרו קשר עכשיו ונבנה יחד את היום המושלם!
+        .cta-button-container
+          a.btn.btn-primary(href="/contact") 
+            | צרו קשר עכשיו
+            svg(xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24")
+              g(fill="none" stroke="currentColor" stroke-width="2")
+                path(d="M4 12a8 8 0 1 1 16 0v5.09c0 .848 0 1.27-.126 1.609a2 2 0 0 1-1.175 1.175C18.36 20 17.937 20 17.09 20H12a8 8 0 0 1-8-8z")
+                path(stroke-linecap="round" stroke-linejoin="round" d="M9 11h6m-3 4h3")
+
+
+
+

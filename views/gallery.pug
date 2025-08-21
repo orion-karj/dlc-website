@@ -1,0 +1,740 @@
+extends layout
+
+block content
+  // Gallery Hero Section
+  section.gallery-hero
+    .gallery-hero-content.fade-in
+      h1.gallery-hero-title גלריה
+      p.gallery-hero-subtitle צפו בתמונות ובסרטונים מהפעילויות שלנו
+
+  // Gallery Section
+  section.gallery-section
+    .gallery-section-background
+    .container
+      .gallery-filters.fade-in
+        button.filter-btn.active(data-filter="all") הכל
+        button.filter-btn(data-filter="images") תמונות
+        button.filter-btn(data-filter="videos") סרטונים
+      
+      .gallery-grid
+        // Mixed Images and Videos - Randomized and deduplicated
+        .gallery-item.fade-in(data-type="images")
+          img.gallery-image(src="/WhatsApp Image 2025-08-11 at 14.28.30.jpeg" alt="פעילות ספורטיבית")
+        
+        .gallery-item.fade-in(data-type="videos")
+          .video-container
+            video.gallery-video(preload="metadata")
+              source(src="/WhatsApp Video 2025-08-13 at 17.35.15.mp4" type="video/mp4")
+            .video-play-button ▶
+        
+        .gallery-item.fade-in(data-type="images")
+          img.gallery-image(src="/WhatsApp Image 2025-08-13 at 17.34.42 (8).jpeg" alt="אימונים קבוצתיים")
+        
+        .gallery-item.fade-in(data-type="videos")
+          .video-container
+            video.gallery-video(preload="metadata")
+              source(src="/WhatsApp Video 2025-08-11 at 14.28.32.mp4" type="video/mp4")
+            .video-play-button ▶
+        
+        .gallery-item.fade-in(data-type="videos")
+          .video-container
+            video.gallery-video(preload="metadata")
+              source(src="/WhatsApp Video 2025-08-13 at 17.35.13.mp4" type="video/mp4")
+            .video-play-button ▶
+        
+        .gallery-item.fade-in(data-type="images")
+          img.gallery-image(src="/WhatsApp Image 2025-08-13 at 17.34.43 (2).jpeg" alt="משחקי כדור")
+        
+        .gallery-item.fade-in(data-type="videos")
+          .video-container
+            video.gallery-video(preload="metadata")
+              source(src="/WhatsApp Video 2025-08-13 at 17.35.12.mp4" type="video/mp4")
+            .video-play-button ▶
+        
+        .gallery-item.fade-in(data-type="images")
+          img.gallery-image(src="/WhatsApp Image 2025-08-11 at 14.28.34.jpeg" alt="פעילויות קהילתיות")
+        
+        .gallery-item.fade-in(data-type="videos")
+          .video-container
+            video.gallery-video(preload="metadata")
+              source(src="/WhatsApp Video 2025-08-13 at 17.35.06.mp4" type="video/mp4")
+            .video-play-button ▶
+        
+        .gallery-item.fade-in(data-type="images")
+          img.gallery-image(src="/WhatsApp Image 2025-08-13 at 17.34.42 (7).jpeg" alt="אימונים אישיים")
+        
+        .gallery-item.fade-in(data-type="videos")
+          .video-container
+            video.gallery-video(preload="metadata")
+              source(src="/WhatsApp Video 2025-08-13 at 17.35.04.mp4" type="video/mp4")
+            .video-play-button ▶
+        
+        .gallery-item.fade-in(data-type="images")
+          img.gallery-image(src="/WhatsApp Image 2025-08-11 at 14.28.30 (4).jpeg" alt="חוגי כדורגל")
+        
+        .gallery-item.fade-in(data-type="videos")
+          .video-container
+            video.gallery-video(preload="metadata")
+              source(src="/WhatsApp Video 2025-08-13 at 17.35.01.mp4" type="video/mp4")
+            .video-play-button ▶
+        
+        .gallery-item.fade-in(data-type="images")
+          img.gallery-image(src="/WhatsApp Image 2025-08-13 at 17.34.42 (6).jpeg" alt="תוכנית גפן")
+        
+        .gallery-item.fade-in(data-type="videos")
+          .video-container
+            video.gallery-video(preload="metadata")
+              source(src="/WhatsApp Video 2025-08-13 at 17.35.00.mp4" type="video/mp4")
+            .video-play-button ▶
+        
+
+        .gallery-item.fade-in(data-type="videos")
+          .video-container
+            video.gallery-video(preload="metadata")
+              source(src="/WhatsApp Video 2025-08-13 at 17.34.59.mp4" type="video/mp4")
+            .video-play-button ▶
+        
+        .gallery-item.fade-in(data-type="images")
+          img.gallery-image(src="/WhatsApp Image 2025-08-13 at 17.34.42 (5).jpeg" alt="ספורט אתגרי")
+        
+        .gallery-item.fade-in(data-type="videos")
+          .video-container
+            video.gallery-video(preload="metadata")
+              source(src="/WhatsApp Video 2025-08-13 at 17.34.55.mp4" type="video/mp4")
+            .video-play-button ▶
+        
+        .gallery-item.fade-in(data-type="images")
+          img.gallery-image(src="/WhatsApp Image 2025-08-11 at 14.28.30 (3).jpeg" alt="פעילויות קהילתיות")
+        
+        .gallery-item.fade-in(data-type="videos")
+          .video-container
+            video.gallery-video(preload="metadata")
+              source(src="/WhatsApp Video 2025-08-13 at 17.34.53.mp4" type="video/mp4")
+            .video-play-button ▶
+        
+        .gallery-item.fade-in(data-type="images")
+          img.gallery-image(src="/WhatsApp Image 2025-08-13 at 17.34.42 (4).jpeg" alt="פיתוח אישי")
+        
+        .gallery-item.fade-in(data-type="videos")
+          .video-container
+            video.gallery-video(preload="metadata")
+              source(src="/WhatsApp Video 2025-08-13 at 17.34.51.mp4" type="video/mp4")
+            .video-play-button ▶
+        
+        .gallery-item.fade-in(data-type="images")
+          img.gallery-image(src="/WhatsApp Image 2025-08-11 at 14.28.30 (2).jpeg" alt="אימונים קבוצתיים")
+        
+        .gallery-item.fade-in(data-type="videos")
+          .video-container
+            video.gallery-video(preload="metadata")
+              source(src="/WhatsApp Video 2025-08-13 at 17.34.49.mp4" type="video/mp4")
+            .video-play-button ▶
+        
+        .gallery-item.fade-in(data-type="images")
+          img.gallery-image(src="/WhatsApp Image 2025-08-13 at 17.34.42 (3).jpeg" alt="ספורט אתגרי")
+        
+        .gallery-item.fade-in(data-type="videos")
+          .video-container
+            video.gallery-video(preload="metadata")
+              source(src="/WhatsApp Video 2025-08-13 at 17.34.47.mp4" type="video/mp4")
+            .video-play-button ▶
+        
+        .gallery-item.fade-in(data-type="images")
+          img.gallery-image(src="/WhatsApp Image 2025-08-11 at 14.28.30 (1).jpeg" alt="משחקי כדור")
+        
+        .gallery-item.fade-in(data-type="videos")
+          .video-container
+            video.gallery-video(preload="metadata")
+              source(src="/WhatsApp Video 2025-08-13 at 17.34.45 (1).mp4" type="video/mp4")
+            .video-play-button ▶
+        
+        .gallery-item.fade-in(data-type="images")
+          img.gallery-image(src="/WhatsApp Image 2025-08-13 at 17.34.42 (2).jpeg" alt="פעילויות שמפתחות כישורים")
+        
+        .gallery-item.fade-in(data-type="videos")
+          .video-container
+            video.gallery-video(preload="metadata")
+              source(src="/WhatsApp Video 2025-08-13 at 17.34.45.mp4" type="video/mp4")
+            .video-play-button ▶
+        
+        .gallery-item.fade-in(data-type="images")
+          img.gallery-image(src="/WhatsApp Image 2025-08-11 at 14.28.31.jpeg" alt="אימונים אישיים")
+        
+        .gallery-item.fade-in(data-type="videos")
+          .video-container
+            video.gallery-video(preload="metadata")
+              source(src="/WhatsApp Video 2025-08-13 at 17.34.43.mp4" type="video/mp4")
+            .video-play-button ▶
+        
+        .gallery-item.fade-in(data-type="images")
+          img.gallery-image(src="/WhatsApp Image 2025-08-13 at 17.34.42 (1).jpeg" alt="חוגי כדורגל")
+        
+        .gallery-item.fade-in(data-type="videos")
+          .video-container
+            video.gallery-video(preload="metadata")
+              source(src="/WhatsApp Video 2025-08-13 at 17.34.46.mp4" type="video/mp4")
+            .video-play-button ▶
+        
+        .gallery-item.fade-in(data-type="images")
+          img.gallery-image(src="/WhatsApp Image 2025-08-11 at 14.28.36.jpeg" alt="תוכנית גפן")
+        
+        .gallery-item.fade-in(data-type="images")
+          img.gallery-image(src="/WhatsApp Image 2025-08-13 at 17.34.42.jpeg" alt="עבודת צוות")
+        
+        .gallery-item.fade-in(data-type="images")
+          img.gallery-image(src="/WhatsApp Image 2025-08-11 at 14.28.34 (1).jpeg" alt="ספורט אתגרי")
+        
+        .gallery-item.fade-in(data-type="images")
+          img.gallery-image(src="/WhatsApp Image 2025-08-13 at 17.34.41 (3).jpeg" alt="משחקי כדור")
+        
+        .gallery-item.fade-in(data-type="images")
+          img.gallery-image(src="/WhatsApp Image 2025-08-11 at 14.28.36 (2).jpeg" alt="פעילויות קהילתיות")
+        
+        .gallery-item.fade-in(data-type="images")
+          img.gallery-image(src="/WhatsApp Image 2025-08-13 at 17.34.41 (2).jpeg" alt="אימונים אישיים")
+        
+        .gallery-item.fade-in(data-type="images")
+          img.gallery-image(src="/WhatsApp Image 2025-08-11 at 14.28.36 (1).jpeg" alt="חוגי כדורגל")
+        
+        .gallery-item.fade-in(data-type="images")
+          img.gallery-image(src="/WhatsApp Image 2025-08-13 at 17.34.41 (1).jpeg" alt="תוכנית גפן")
+        
+        .gallery-item.fade-in(data-type="images")
+          img.gallery-image(src="/WhatsApp Image 2025-08-11 at 14.28.33 (1).jpeg" alt="עבודת צוות")
+        
+        .gallery-item.fade-in(data-type="images")
+          img.gallery-image(src="/WhatsApp Image 2025-08-13 at 17.34.41.jpeg" alt="ספורט אתגרי")
+        
+        .gallery-item.fade-in(data-type="images")
+          img.gallery-image(src="/WhatsApp Image 2025-08-13 at 17.34.49.jpeg" alt="משחקי כדור")
+        
+        .gallery-item.fade-in(data-type="images")
+          img.gallery-image(src="/WhatsApp Image 2025-08-13 at 17.34.43.jpeg" alt="פעילויות קהילתיות")
+        
+        .gallery-item.fade-in(data-type="images")
+          img.gallery-image(src="/WhatsApp Image 2025-08-13 at 17.34.43 (1).jpeg" alt="אימונים אישיים")
+
+  // Lightbox Modal
+  .lightbox-modal#lightboxModal
+    .lightbox-content
+      span.lightbox-close &times;
+      img.lightbox-image#lightboxImage(src="" alt="")
+      video.lightbox-video#lightboxVideo(controls)
+        source(src="" type="video/mp4")
+      .lightbox-caption#lightboxCaption
+
+  style.
+    body {
+        direction: rtl;
+    }
+
+    /* Animation Keyframes */
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Gallery Hero Section */
+    .gallery-hero {
+      background: linear-gradient(135deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)), url('/WhatsApp Image 2025-08-11 at 14.28.36 (2).jpeg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      color: white;
+      padding: 120px 0 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .gallery-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.4) 100%);
+      opacity: 1;
+    }
+
+    .gallery-hero::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(circle at 20% 80%, rgba(0, 112, 243, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(56, 161, 105, 0.08) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .gallery-hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .gallery-hero-title {
+      font-size: clamp(2.5rem, 6vw, 3.5rem);
+      font-weight: 700;
+      margin-bottom: 24px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      animation: fadeInDown 1s ease-out;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      text-align: center;
+    }
+
+    .gallery-hero-subtitle {
+      font-size: clamp(1.1rem, 3.5vw, 1.4rem);
+      margin-bottom: 28px;
+      opacity: 0.9;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      animation: fadeInUp 1s ease-out 0.3s both;
+      line-height: 1.5;
+      font-weight: 500;
+      text-align: center;
+    }
+
+    /* Gallery Section */
+    .gallery-section {
+      background: #1a202c;
+      padding: 80px 0;
+      position: relative;
+    }
+
+    .gallery-section-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(circle at 30% 20%, rgba(0, 112, 243, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 70% 80%, rgba(56, 161, 105, 0.05) 0%, transparent 50%);
+      z-index: 0;
+    }
+
+    .gallery-filters {
+      text-align: center;
+      margin-bottom: 48px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .filter-btn {
+      background: transparent;
+      border: 2px solid #0070f3;
+      color: #0070f3;
+      padding: 12px 24px;
+      margin: 0 8px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      font-size: 1rem;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: #0070f3;
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(0, 112, 243, 0.3);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 24px;
+      margin-top: 40px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .gallery-item {
+      background: #2d3748;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      position: relative;
+      border: 1px solid #4a5568;
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+      border-color: #0070f3;
+    }
+
+    .gallery-image,
+    .video-container {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      display: block;
+      position: relative;
+    }
+
+    .video-container {
+      background: #000;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .gallery-video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .video-play-button {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 60px;
+      height: 60px;
+      background: rgba(0, 112, 243, 0.9);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      z-index: 2;
+    }
+
+    .video-play-button:hover {
+      background: rgba(0, 112, 243, 1);
+      transform: translate(-50%, -50%) scale(1.1);
+    }
+
+    /* Lightbox Modal */
+    .lightbox-modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.95);
+      backdrop-filter: blur(10px);
+    }
+
+    .lightbox-content {
+      position: relative;
+      margin: auto;
+      padding: 20px;
+      width: 90%;
+      max-width: 900px;
+      height: 90%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 15px;
+      right: 35px;
+      color: #f1f1f1;
+      font-size: 40px;
+      font-weight: bold;
+      cursor: pointer;
+      z-index: 2001;
+      transition: color 0.3s ease;
+    }
+
+    .lightbox-close:hover {
+      color: #0070f3;
+    }
+
+    .lightbox-image,
+    .lightbox-video {
+      max-width: 100%;
+      max-height: 80%;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .lightbox-caption {
+      color: #f1f1f1;
+      text-align: center;
+      margin-top: 20px;
+      font-size: 1.1rem;
+      background: rgba(0, 0, 0, 0.7);
+      padding: 10px 20px;
+      border-radius: 8px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1024px) {
+      .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 20px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .gallery-hero {
+        padding: 100px 0 60px;
+        min-height: 50vh;
+      }
+
+      .gallery-filters {
+        margin-bottom: 32px;
+      }
+
+      .filter-btn {
+        padding: 10px 20px;
+        margin: 4px;
+        font-size: 0.9rem;
+      }
+
+      .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 16px;
+        margin-top: 32px;
+      }
+
+      .gallery-image,
+      .video-container {
+        height: 200px;
+      }
+
+      .lightbox-content {
+        width: 95%;
+        padding: 10px;
+      }
+
+      .lightbox-close {
+        top: 10px;
+        right: 20px;
+        font-size: 30px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .filter-btn {
+        padding: 8px 16px;
+        margin: 2px;
+        font-size: 0.8rem;
+      }
+
+      .video-play-button {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+      }
+    }
+
+  script.
+    // Gallery filtering functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const filterBtns = document.querySelectorAll('.filter-btn');
+      const galleryItems = document.querySelectorAll('.gallery-item');
+
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+          // Remove active class from all buttons
+          filterBtns.forEach(b => b.classList.remove('active'));
+          // Add active class to clicked button
+          this.classList.add('active');
+
+          const filter = this.getAttribute('data-filter');
+
+          galleryItems.forEach(item => {
+            if (filter === 'all' || item.getAttribute('data-type') === filter) {
+              item.style.display = 'block';
+              item.classList.add('fade-in');
+            } else {
+              item.style.display = 'none';
+            }
+          });
+        });
+      });
+
+      // Video play button functionality
+      document.querySelectorAll('.video-play-button').forEach(button => {
+        button.addEventListener('click', function(e) {
+          e.stopPropagation();
+          const videoContainer = this.parentElement;
+          const video = videoContainer.querySelector('.gallery-video');
+          
+          // Stop all other videos first
+          document.querySelectorAll('.gallery-video').forEach(otherVideo => {
+            if (otherVideo !== video && !otherVideo.paused) {
+              otherVideo.pause();
+              const otherButton = otherVideo.parentElement.querySelector('.video-play-button');
+              if (otherButton) {
+                otherButton.style.display = 'flex';
+              }
+            }
+          });
+          
+          if (video.paused) {
+            video.play();
+            this.style.display = 'none';
+          } else {
+            video.pause();
+            this.style.display = 'flex';
+          }
+        });
+      });
+
+      // Video thumbnail click functionality - stop all videos and show play buttons
+      document.querySelectorAll('.gallery-video').forEach(video => {
+        video.addEventListener('click', function(e) {
+          e.stopPropagation();
+          
+          // Stop all videos and show all play buttons
+          document.querySelectorAll('.gallery-video').forEach(otherVideo => {
+            if (!otherVideo.paused) {
+              otherVideo.pause();
+              const otherButton = otherVideo.parentElement.querySelector('.video-play-button');
+              if (otherButton) {
+                otherButton.style.display = 'flex';
+              }
+            }
+          });
+        });
+      });
+
+      // Video ended event
+      document.querySelectorAll('.gallery-video').forEach(video => {
+        video.addEventListener('ended', function() {
+          const playButton = this.parentElement.querySelector('.video-play-button');
+          if (playButton) {
+            playButton.style.display = 'flex';
+          }
+        });
+      });
+
+      // Lightbox functionality
+      const lightboxModal = document.getElementById('lightboxModal');
+      const lightboxImage = document.getElementById('lightboxImage');
+      const lightboxVideo = document.getElementById('lightboxVideo');
+      const lightboxCaption = document.getElementById('lightboxCaption');
+      const lightboxClose = document.querySelector('.lightbox-close');
+
+      // Open lightbox for images
+      document.querySelectorAll('.gallery-image').forEach(img => {
+        img.addEventListener('click', function() {
+          lightboxImage.src = this.src;
+          lightboxImage.style.display = 'block';
+          lightboxVideo.style.display = 'none';
+          lightboxCaption.textContent = this.alt;
+          lightboxModal.style.display = 'block';
+        });
+      });
+
+      // Open lightbox for videos - use double click to avoid conflict with single click
+      document.querySelectorAll('.gallery-video').forEach(video => {
+        video.addEventListener('dblclick', function(e) {
+          e.stopPropagation();
+          const source = this.querySelector('source');
+          lightboxVideo.querySelector('source').src = source.src;
+          lightboxVideo.load();
+          lightboxVideo.style.display = 'block';
+          lightboxImage.style.display = 'none';
+          
+          lightboxCaption.textContent = 'סרטון פעילות';
+          
+          lightboxModal.style.display = 'block';
+          
+          // Auto-play video in lightbox
+          setTimeout(() => {
+            lightboxVideo.play();
+          }, 100);
+        });
+      });
+
+      // Close lightbox
+      lightboxClose.addEventListener('click', function() {
+        lightboxModal.style.display = 'none';
+        if (lightboxVideo.style.display === 'block') {
+          lightboxVideo.pause();
+        }
+      });
+
+      // Close lightbox when clicking outside
+      lightboxModal.addEventListener('click', function(e) {
+        if (e.target === lightboxModal) {
+          lightboxModal.style.display = 'none';
+          if (lightboxVideo.style.display === 'block') {
+            lightboxVideo.pause();
+          }
+        }
+      });
+
+      // Close lightbox with Escape key
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && lightboxModal.style.display === 'block') {
+          lightboxModal.style.display = 'none';
+          if (lightboxVideo.style.display === 'block') {
+            lightboxVideo.pause();
+          }
+        }
+      });
+
+      // Fade in animation for gallery items
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('fade-in');
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll('.gallery-item').forEach(item => {
+        observer.observe(item);
+      });
+    });

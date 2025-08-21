@@ -1,0 +1,1145 @@
+extends layout.pug
+
+block content
+  style.
+    /* Override RTL direction for contact page */
+    body {
+      direction: rtl;
+      
+    }
+
+    /* Contact Page Specific Styles */
+    .contact-hero {
+      background: linear-gradient(135deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)), url('/WhatsApp Image 2025-08-11 at 14.28.36 (2).jpeg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      color: white;
+      padding: 120px 0 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .contact-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.4) 100%);
+      opacity: 1;
+    }
+
+    .contact-hero::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(circle at 20% 80%, rgba(0, 112, 243, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(56, 161, 105, 0.08) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .contact-hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .contact-hero-title {
+      font-size: clamp(2.5rem, 6vw, 3.5rem);
+      font-weight: 700;
+      margin-bottom: 24px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      animation: fadeInDown 1s ease-out;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      text-align: center;
+    }
+
+    .contact-hero-subtitle {
+      font-size: clamp(1.1rem, 3.5vw, 1.4rem);
+      margin-bottom: 28px;
+      opacity: 0.9;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      animation: fadeInUp 1s ease-out 0.3s both;
+      line-height: 1.5;
+      font-weight: 500;
+      text-align: center;
+    }
+
+    /* Why Choose Us Section */
+    .why-choose-section {
+      background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+      padding: 80px 0;
+      position: relative;
+    }
+
+    .why-choose-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      background: #1a202c;
+      clip-path: polygon(0 0, 100% 80%, 100% 100%, 0 100%);
+    }
+
+    .why-choose-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-top: 50px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .why-choose-item {
+      background: rgba(45, 55, 72, 0.8);
+      border-radius: 16px;
+      padding: 24px 18px;
+      text-align: center;
+      border: 1px solid rgba(0, 112, 243, 0.2);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .why-choose-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #0070f3, #38a169);
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+
+    .why-choose-item:hover::before {
+      transform: scaleX(1);
+    }
+
+    .why-choose-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+      background: rgba(45, 55, 72, 0.9);
+    }
+
+    .why-choose-icon {
+      width: 60px;
+      height: 60px;
+      margin: 0 auto 20px;
+      background: linear-gradient(135deg, #0070f3, #38a169);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 20px rgba(0, 112, 243, 0.3);
+    }
+
+    .why-choose-icon svg {
+      width: 35px;
+      height: 35px;
+      color: white;
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+    }
+
+    .why-choose-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #f7fafc;
+      margin-bottom: 16px;
+    }
+
+    .why-choose-description {
+      color: #cbd5e0;
+      line-height: 1.6;
+      font-size: 1rem;
+    }
+
+    /* FAQ Section */
+    .faq-section {
+      background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+      padding: 80px 0;
+      position: relative;
+    }
+
+    .faq-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      background: #2d3748;
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 80%);
+    }
+
+    .faq-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-top: 50px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .faq-item {
+      background: rgba(45, 55, 72, 0.8);
+      border-radius: 12px;
+      border: 1px solid rgba(0, 112, 243, 0.2);
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .faq-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+      background: rgba(45, 55, 72, 0.9);
+    }
+
+    .faq-question {
+      background: rgba(0, 112, 243, 0.1);
+      padding: 20px 24px;
+      cursor: pointer;
+      border-bottom: 1px solid rgba(0, 112, 243, 0.2);
+      transition: all 0.3s ease;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .faq-question:hover {
+      background: rgba(0, 112, 243, 0.15);
+    }
+
+    .faq-question h3 {
+      color: #f7fafc;
+      font-weight: 600;
+      font-size: 1.1rem;
+      margin: 0;
+    }
+
+    .faq-answer {
+      padding: 20px 24px;
+      color: #cbd5e0;
+      line-height: 1.6;
+      font-size: 0.95rem;
+      border-top: 1px solid rgba(0, 112, 243, 0.1);
+    }
+
+    /* Contact Form Section */
+    .contact-section {
+      background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+      position: relative;
+      padding: 100px 0;
+    }
+
+    .contact-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      background: #2d3748;
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 80%);
+    }
+
+    .contact-section::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 400px;
+      height: 400px;
+      background: 
+        linear-gradient(135deg, rgba(0, 112, 243, 0.02) 0%, transparent 70%);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .contact-container {
+      max-width: 100%;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+      display: flex;
+      justify-content: space-around;
+      align-items: start;
+      padding: 0 20px;
+    }
+
+    @media (max-width: 768px) {
+      .contact-container {
+        flex-direction: column;
+        justify-content: flex-start;
+        padding: 0 20px;
+        gap: 30px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .contact-container {
+        padding: 0 16px;
+        gap: 24px;
+      }
+    }
+
+    .contact-form {
+      background: rgba(45, 55, 72, 0.9);
+      border-radius: 16px;
+      padding: 24px 20px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(0, 112, 243, 0.2);
+      backdrop-filter: blur(10px);
+      position: relative;
+      overflow: hidden;
+      order: 1;
+      width: 35%;
+      min-width: 300px;
+    }
+
+    @media (max-width: 768px) {
+      .contact-form {
+        width: 100%;
+        min-width: auto;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .contact-form {
+        max-width: 100%;
+        margin: 0;
+      }
+    }
+
+    .contact-form::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #0070f3, #38a169);
+      border-radius: 2px 2px 0 0;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+      position: relative;
+    }
+
+    .form-label {
+      display: block;
+      margin-bottom: 10px;
+      color: #f7fafc;
+      font-weight: 600;
+      font-size: 0.95rem;
+      position: relative;
+    }
+
+    .form-label.required::after {
+      content: ' *';
+      color: #e53e3e;
+      font-weight: bold;
+    }
+
+    .form-input,
+    .form-textarea {
+      width: 100%;
+      padding: 10px 12px;
+      background: rgba(26, 32, 44, 0.8);
+      border: 2px solid rgba(0, 112, 243, 0.2);
+      border-radius: 8px;
+      color: #f7fafc;
+      font-size: 0.85rem;
+      font-family: inherit;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .form-input:focus,
+    .form-textarea:focus {
+      outline: none;
+      border-color: #0070f3;
+      background: rgba(26, 32, 44, 0.9);
+      box-shadow: 0 0 0 3px rgba(0, 112, 243, 0.1);
+      transform: translateY(-1px);
+    }
+
+    .form-input::placeholder,
+    .form-textarea::placeholder {
+      color: #a0aec0;
+      opacity: 0.7;
+    }
+
+    .form-textarea {
+      min-height: 100px;
+      resize: vertical;
+      line-height: 1.6;
+    }
+
+    .form-submit {
+      width: 100%;
+      padding: 12px 18px;
+      background: linear-gradient(135deg, #0070f3 0%, #38a169 100%);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0, 112, 243, 0.3);
+    }
+
+    .form-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 112, 243, 0.4);
+      background: linear-gradient(135deg, #0056b3 0%, #2f855a 100%);
+    }
+
+    .form-submit:active {
+      transform: translateY(0);
+    }
+
+    .form-submit::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .form-submit:hover::before {
+      left: 100%;
+    }
+
+    /* Contact Info Section */
+    .contact-info {
+      order: 2;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      width: 25%;
+      min-width: 250px;
+    }
+
+    @media (max-width: 768px) {
+      .contact-info {
+        width: 100%;
+        min-width: auto;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .contact-info {
+        flex-direction: column;
+        gap: 16px;
+      }
+    }
+
+    .contact-info-item {
+      background: rgba(45, 55, 72, 0.8);
+      border-radius: 12px;
+      padding: 16px 12px;
+      text-align: center;
+      border: 1px solid rgba(0, 112, 243, 0.2);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    @media (max-width: 768px) {
+      .contact-info-item {
+        flex: 1;
+        min-width: 250px;
+        max-width: 300px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .contact-info-item {
+        min-width: auto;
+        max-width: none;
+        width: 100%;
+      }
+    }
+
+    .contact-info-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #0070f3, #38a169);
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+
+    .contact-info-item:hover::before {
+      transform: scaleX(1);
+    }
+
+    .contact-info-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+      background: rgba(45, 55, 72, 0.9);
+    }
+
+    .contact-info-icon {
+      width: 50px;
+      height: 50px;
+      margin: 0 auto 16px;
+      background: linear-gradient(135deg, #0070f3, #38a169);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 16px rgba(0, 112, 243, 0.3);
+    }
+
+    .contact-info-icon svg {
+      width: 28px;
+      height: 28px;
+      color: white;
+      filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+    }
+
+    .contact-info-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #f7fafc;
+      margin-bottom: 12px;
+    }
+
+    .contact-info-text {
+      color: #cbd5e0;
+      line-height: 1.6;
+      font-size: 0.95rem;
+    }
+
+    .contact-info-link {
+      color: #0070f3;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .contact-info-link:hover {
+      color: #38a169;
+    }
+
+    /* Success/Error Messages */
+    .form-message {
+      padding: 16px 20px;
+      border-radius: 8px;
+      margin-bottom: 24px;
+      font-weight: 500;
+      text-align: center;
+      animation: slideInDown 0.5s ease;
+    }
+
+    .form-message.success {
+      background: rgba(56, 161, 105, 0.1);
+      border: 1px solid rgba(56, 161, 105, 0.3);
+      color: #68d391;
+    }
+
+    .form-message.error {
+      background: rgba(229, 62, 62, 0.1);
+      border: 1px solid rgba(229, 62, 62, 0.3);
+      color: #fc8181;
+    }
+
+    /* Loading State */
+    .form-submit.loading {
+      pointer-events: none;
+      opacity: 0.9;
+    }
+
+    .form-submit.loading::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 20px;
+      width: 16px;
+      height: 16px;
+      margin-top: -8px;
+      border: 2px solid transparent;
+      border-top: 2px solid white;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    .form-submit.loading span {
+      margin-left: 24px;
+    }
+
+    /* Animations */
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1024px) {
+      .contact-container {
+        flex-direction: column;
+        gap: 40px;
+        align-items: center;
+        padding: 0 20px;
+      }
+
+      .contact-form {
+        order: 1;
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .contact-info {
+        order: 2;
+        width: 100%;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .contact-info-item {
+        flex: 1;
+        min-width: 250px;
+        max-width: 300px;
+      }
+
+      .why-choose-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+        margin-top: 40px;
+        max-width: 100%;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .contact-hero {
+        padding: 80px 0 40px;
+        min-height: 40vh;
+        background-attachment: scroll;
+      }
+
+      .contact-hero-title {
+        font-size: clamp(2rem, 5vw, 2.5rem);
+        margin-bottom: 16px;
+      }
+
+      .contact-hero-subtitle {
+        font-size: clamp(1rem, 3vw, 1.2rem);
+        margin-bottom: 20px;
+      }
+
+      .contact-section {
+        padding: 60px 0;
+      }
+
+      .why-choose-section {
+        padding: 60px 0;
+      }
+
+      .faq-section {
+        padding: 60px 0;
+      }
+
+      .contact-container {
+        flex-direction: column;
+        gap: 30px;
+        align-items: center;
+        padding: 0 16px;
+      }
+
+      .contact-form {
+        order: 1;
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        padding: 24px 20px;
+      }
+
+      .contact-info {
+        order: 2;
+        width: 100%;
+        flex-direction: column;
+        gap: 20px;
+        margin: 0;
+      }
+
+      .contact-info-item {
+        max-width: none;
+        padding: 20px 16px;
+      }
+
+      .why-choose-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        margin-top: 30px;
+        padding: 0 16px;
+      }
+
+      .faq-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+        margin-top: 30px;
+        padding: 0 16px;
+        max-width: 100%;
+      }
+
+      .section-title {
+        font-size: clamp(1.8rem, 4vw, 2.2rem);
+        margin-bottom: 40px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .contact-hero {
+        padding: 80px 0 40px;
+      }
+
+      .contact-hero-title {
+        margin-bottom: 16px;
+      }
+
+      .contact-hero-subtitle {
+        margin-bottom: 20px;
+      }
+
+      .contact-form {
+        padding: 24px 20px;
+        margin: 0 16px;
+      }
+
+      .form-input,
+      .form-textarea {
+        padding: 14px 16px;
+        font-size: 0.95rem;
+      }
+
+      .form-submit {
+        padding: 16px 24px;
+        font-size: 1rem;
+      }
+
+      .why-choose-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        margin-top: 30px;
+      }
+
+      .faq-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+        margin-top: 24px;
+        padding: 0 12px;
+      }
+    }
+
+  // Contact Hero Section
+  section.contact-hero
+    .container
+      .contact-hero-content
+        h1.contact-hero-title צור קשר
+        p.contact-hero-subtitle
+          | מוכנים להתחיל? בואו נבנה יחד עתיד טוב יותר לילדים שלכם
+
+  // Why Choose Us Section
+  section.why-choose-section
+    .container
+      h2.section-title למה לבחור בנו?
+      .why-choose-grid
+        .why-choose-item
+          .why-choose-icon
+            svg(xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor")
+              path(stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z")
+          h3.why-choose-title ניסיון מוכח
+          p.why-choose-description
+            | מעל 10 שנות ניסיון בעבודה עם ילדים ונוער במסגרות חינוכיות וספורטיביות
+
+        .why-choose-item
+          .why-choose-icon
+            svg(xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor")
+              path(stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z")
+          h3.why-choose-title גישה אישית
+          p.why-choose-description
+            | כל ילד מקבל תשומת לב אישית ותוכנית מותאמת לצרכים ולכישורים שלו
+
+        .why-choose-item
+          .why-choose-icon
+            svg(xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor")
+              path(stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z")
+          h3.why-choose-title תוצאות מהירות
+          p.why-choose-description
+            | שיפור ניכר בביטחון העצמי, כישורים חברתיים ויכולות פיזיות תוך זמן קצר
+
+        .why-choose-item
+          .why-choose-icon
+            svg(xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor")
+              path(stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z")
+          h3.why-choose-title אהבה למקצוע
+          p.why-choose-description
+            | עבודה עם הרבה נשמה, סבלנות ואהבה אמיתית לילדים ולספורט
+
+  // FAQ Section
+  section.faq-section
+    .container
+      h2.section-title שאלות נפוצות
+      .faq-grid
+        .faq-item
+          .faq-question
+            h3 איך מתחילים?
+            svg(xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16")
+              path(d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z")
+          .faq-answer
+            | פשוט מאוד! צרו איתנו קשר בטלפון או דרך הטופס באתר, נקבע פגישה ראשונית ונבנה יחד תוכנית מותאמת אישית.
+
+        .faq-item
+          .faq-question
+            h3 מה הגיל המתאים להתחיל?
+            svg(xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16")
+              path(d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z")
+          .faq-answer
+            | אנחנו עובדים עם ילדים מגיל 5 ועד גיל 18. לכל גיל יש תוכנית מותאמת עם דגשים שונים ומטרות שונות.
+
+        .faq-item
+          .faq-question
+            h3 האם אתם מגיעים לבתי ספר?
+            svg(xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16")
+              path(d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z")
+          .faq-answer
+            | כן! אנחנו מגיעים לבתי ספר בכל הארץ עם תוכנית "דרך לחיים" שמשלבת ספורט עם ערכים וחינוך.
+
+        .faq-item
+          .faq-question
+            h3 מה אם הילד לא אוהב ספורט?
+            svg(xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16")
+              path(d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z")
+          .faq-answer
+            | זה בדיוק מה שאנחנו עושים! אנחנו הופכים ספורט לחוויה כיפית ומרתקת. רוב הילדים שמגיעים אלינו לא אוהבים ספורט בהתחלה, אבל מהר מאוד הם מתאהבים בזה.
+
+  // Contact Form Section
+  section.contact-section
+    .container
+      .contact-container
+        // Contact Information
+        .contact-info
+          .contact-info-item
+            .contact-info-icon
+              svg(xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor")
+                path(stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z")
+            h3.contact-info-title טלפון
+            p.contact-info-text
+              a.contact-info-link(href="tel:+972501234567")  054-4927583
+
+          .contact-info-item
+            .contact-info-icon
+              svg(xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor")
+                path(stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z")
+            h3.contact-info-title אימייל
+            p.contact-info-text
+              a.contact-info-link(href="mailto:info@derech-lachayim.co.il") Amitkorkus88@gmail.com
+
+          .contact-info-item
+            .contact-info-icon
+              svg(xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor")
+                path(stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z")
+                path(stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z")
+            h3.contact-info-title מיקום
+            p.contact-info-text
+              | מרכז הארץ, ישראל
+              br
+              | זמינים לנסיעות בכל הארץ
+
+
+        // Contact Form
+        .contact-form
+          h2.section-title(style="margin-bottom: 32px; text-align: center; font-size: 1.8rem;") שלחו לנו הודעה
+          p(style="text-align: center; margin-bottom: 20px; color: #cbd5e0;") טופס יצירת קשר
+           
+          // Success/Error Messages
+          if success
+            .form-message.success
+              | הודעתכם נשלחה בהצלחה! נחזור אליכם בהקדם האפשרי.
+          if error
+            .form-message.error
+              | #{error}
+
+          form(action="/contact" method="POST" id="contactForm")
+            .form-group
+              label.form-label.required(for="fullName") שם מלא
+              input.form-input(
+                type="text" 
+                id="fullName" 
+                name="fullName" 
+                required 
+                placeholder="הזינו את שמכם המלא"
+                value=fullName || ""
+              )
+
+            .form-group
+              label.form-label.required(for="email") כתובת אימייל
+              input.form-input(
+                type="email" 
+                id="email" 
+                name="email" 
+                required 
+                placeholder="הזינו כתובת אימייל תקינה"
+                value=email || ""
+              )
+
+            .form-group
+              label.form-label(for="phone") מספר טלפון
+              input.form-input(
+                type="tel" 
+                id="phone" 
+                name="phone" 
+                placeholder="הזינו מספר טלפון (אופציונלי)"
+                value=phone || ""
+              )
+
+            .form-group
+              label.form-label.required(for="message") הודעה
+              textarea.form-textarea(
+                id="message" 
+                name="message" 
+                required 
+                placeholder="כתבו לנו על מה תרצו לדבר או איזה שירות מעניין אתכם"
+                rows="4"
+              )= message || ""
+
+            button.form-submit(type="submit" id="submitBtn")
+              span שלח הודעה
+
+  script.
+    // Check if form exists when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+      const form = document.getElementById('contactForm');
+      const submitBtn = document.getElementById('submitBtn');
+      
+      if (form) {
+        console.log('Form found:', form);
+        console.log('Submit button found:', submitBtn);
+      } else {
+        console.error('Form not found!');
+      }
+    });
+
+    // Form submission handling
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault(); // Prevent page refresh
+      console.log('Form submitted!');
+      
+      const form = this;
+      const submitBtn = document.getElementById('submitBtn');
+      const submitText = submitBtn.querySelector('span');
+      
+      // Add loading state
+      submitBtn.classList.add('loading');
+      submitText.textContent = 'שולח...';
+      
+      // Disable only the submit button to prevent double submission
+      submitBtn.disabled = true;
+      
+      // Get form data
+      const formData = new FormData(form);
+      const formDataObj = {};
+      formData.forEach((value, key) => {
+        formDataObj[key] = value;
+      });
+      
+      // Send AJAX request
+      fetch('/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formDataObj)
+      })
+      .then(response => {
+        if (!response.ok) {
+          return response.json().then(data => {
+            throw new Error(data.error || 'שגיאה בשליחת המייל');
+          });
+        }
+        return response.json();
+      })
+      .then(data => {
+        if (data.success) {
+          // Show success message
+          showMessage('success', data.message);
+          
+          // Reset form
+          form.reset();
+        } else {
+          // Show error message
+          showMessage('error', data.error || 'שגיאה בשליחת המייל');
+        }
+        
+        // Reset button
+        submitBtn.classList.remove('loading');
+        submitBtn.disabled = false;
+        submitText.textContent = 'שלח הודעה';
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        
+        // Show error message
+        showMessage('error', error.message || 'שגיאה בשליחת המייל. אנא נסו שוב מאוחר יותר.');
+        
+        // Reset button
+        submitBtn.classList.remove('loading');
+        submitBtn.disabled = false;
+        submitText.textContent = 'שלח הודעה';
+      });
+    });
+
+    // Function to show messages
+    function showMessage(type, message) {
+      // Remove existing messages
+      const existingMessages = document.querySelectorAll('.form-message');
+      existingMessages.forEach(msg => msg.remove());
+      
+      // Create new message
+      const messageDiv = document.createElement('div');
+      messageDiv.className = `form-message ${type}`;
+      messageDiv.textContent = message;
+      
+      // Insert message before the form
+      const form = document.getElementById('contactForm');
+      form.parentNode.insertBefore(messageDiv, form);
+      
+      // Auto-remove message after 5 seconds
+      setTimeout(() => {
+        messageDiv.remove();
+      }, 5000);
+    }
+
+    // Auto-resize textarea
+    const textarea = document.getElementById('message');
+    textarea.addEventListener('input', function() {
+      this.style.height = 'auto';
+      this.style.height = this.scrollHeight + 'px';
+    });
+
+    // FAQ Toggle functionality
+    document.querySelectorAll('.faq-question').forEach(question => {
+      question.addEventListener('click', function() {
+        const answer = this.nextElementSibling;
+        const icon = this.querySelector('svg');
+        
+        // Toggle answer visibility
+        if (answer.style.display === 'none' || answer.style.display === '') {
+          answer.style.display = 'block';
+          icon.style.transform = 'rotate(45deg)';
+        } else {
+          answer.style.display = 'none';
+          icon.style.transform = 'rotate(0deg)';
+        }
+      });
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Intersection Observer for fade effects
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    // Observe all fade elements
+    document.addEventListener('DOMContentLoaded', () => {
+      const fadeElements = document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right, .scale-in');
+      fadeElements.forEach(el => observer.observe(el));
+    });

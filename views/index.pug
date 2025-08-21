@@ -1,0 +1,1843 @@
+extends layout.pug 
+
+block content
+  script(src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js")
+  style.
+    /* Reset and Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: 'Inter', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.6;
+      color: #e2e8f0;
+      direction: rtl;
+      text-align: right;
+      overflow-x: hidden;
+      background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+      font-weight: 400;
+      position: relative;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        linear-gradient(90deg, transparent 98%, rgba(0, 112, 243, 0.05) 100%),
+        linear-gradient(0deg, transparent 98%, rgba(0, 112, 243, 0.05) 100%);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    /* Scroll fade effects */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .fade-in-left {
+      opacity: 0;
+      transform: translateX(50px);
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .fade-in-left.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .fade-in-right {
+      opacity: 0;
+      transform: translateX(-50px);
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .fade-in-right.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .scale-in {
+      opacity: 0;
+      transform: scale(0.8);
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .scale-in.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Navigation Styles */
+    nav.navbar {
+      background: rgba(26, 32, 44, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(0, 112, 243, 0.2);
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      transition: all 0.3s ease;
+    }
+
+    nav.navbar.scrolled {
+      background: rgba(26, 32, 44, 0.98);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .navbar-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 70px;
+    }
+
+    .navbar-brand {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #f7fafc;
+      text-decoration: none;
+      background: linear-gradient(135deg, #f7fafc 0%, #0070f3 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .navbar-brand:hover {
+      background: linear-gradient(135deg, #0070f3 0%, #38a169 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .navbar-nav {
+      display: flex;
+      list-style: none;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .nav-item {
+      position: relative;
+    }
+
+    .nav-link {
+      color: #cbd5e0;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      padding: 8px 16px;
+      border-radius: 8px;
+      position: relative;
+    }
+
+    .nav-link:hover {
+      color: #f7fafc;
+      background: rgba(0, 112, 243, 0.1);
+    }
+
+    .nav-link.active {
+      color: #0070f3;
+      background: rgba(0, 112, 243, 0.15);
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 2px;
+      background: #0070f3;
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      width: 80%;
+    }
+
+    .navbar-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: #f7fafc;
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 8px;
+    }
+
+    .navbar-toggle:hover {
+      color: #0070f3;
+    }
+
+    /* Mobile Navigation */
+    @media (max-width: 768px) {
+      .navbar-nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(26, 32, 44, 0.98);
+        backdrop-filter: blur(10px);
+        flex-direction: column;
+        gap: 0;
+        border-top: 1px solid rgba(0, 112, 243, 0.2);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      }
+
+      .navbar-nav.active {
+        display: flex;
+      }
+
+      .nav-item {
+        width: 100%;
+        border-bottom: 1px solid rgba(0, 112, 243, 0.1);
+      }
+
+      .nav-link {
+        display: block;
+        padding: 16px 24px;
+        border-radius: 0;
+        text-align: center;
+      }
+
+      .navbar-toggle {
+        display: block;
+      }
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)), url('/WhatsApp Image 2025-08-11 at 14.28.36 (2).jpeg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      color: white;
+      padding: 120px 0 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      min-height: 80vh;
+      display: flex;
+      align-items: center;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.4) 100%);
+      opacity: 1;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(circle at 20% 80%, rgba(0, 112, 243, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(56, 161, 105, 0.08) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .hero-title {
+      font-size: clamp(2.5rem, 6vw, 3.5rem);
+      font-weight: 700;
+      margin-bottom: 24px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      animation: fadeInDown 1s ease-out;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1.1rem, 3.5vw, 1.4rem);
+      margin-bottom: 28px;
+      opacity: 0.9;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      animation: fadeInUp 1s ease-out 0.3s both;
+      line-height: 1.5;
+      font-weight: 500;
+    }
+
+    .hero-description {
+      font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+      margin-bottom: 40px;
+      opacity: 0.85;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      animation: fadeInUp 1s ease-out 0.6s both;
+      line-height: 1.6;
+      font-weight: 400;
+    }
+
+    .hero-cta {
+      animation: fadeInUp 1s ease-out 0.9s both;
+      display: flex;
+      gap: 18px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 28px;
+      background: #1a202c;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      border: 1px solid transparent;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      letter-spacing: 0.01em;
+      min-width: 140px;
+      text-align: center;
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+      transition: left 0.4s;
+    }
+
+    .btn:hover::before {
+      left: 100%;
+    }
+
+    .btn:hover {
+      background: #2d3748;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border-color: white;
+      color: white;
+      box-shadow: 0 4px 15px rgba(255,255,255,0.1);
+    }
+
+    .btn-outline:hover {
+      background: white;
+      color: #2d3748;
+      box-shadow: 0 8px 25px rgba(255,255,255,0.2);
+    }
+
+    /* Animations */
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Section Styles */
+    section {
+      padding: 100px 0;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 6vw, 2.8rem);
+      text-align: center;
+      margin-bottom: 80px;
+      color: #f7fafc;
+      font-weight: 700;
+      position: relative;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background: #0070f3;
+      border-radius: 2px;
+    }
+
+    /* About Section */
+    .about {
+      background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 80%);
+    }
+
+    .about::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 400px;
+      height: 400px;
+      background: 
+        linear-gradient(135deg, rgba(0, 112, 243, 0.02) 0%, transparent 70%);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .about-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(circle at 10% 20%, rgba(0, 112, 243, 0.03) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(56, 161, 105, 0.03) 0%, transparent 40%),
+        linear-gradient(45deg, transparent 49%, rgba(0, 112, 243, 0.01) 50%, transparent 51%);
+      background-size: 100px 100px, 120px 120px, 60px 60px;
+      opacity: 0.6;
+      z-index: 0;
+    }
+
+    .about-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      margin-top: 60px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .about-text {
+      position: relative;
+      z-index: 1;
+    }
+
+    .about-image {
+      position: relative;
+      z-index: 1;
+    }
+
+    .about-text {
+      position: relative;
+    }
+
+    .about-text::before {
+      content: '';
+      position: absolute;
+      top: -15px;
+      right: -15px;
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, rgba(0, 112, 243, 0.06), rgba(56, 161, 105, 0.06));
+      border-radius: 50%;
+      z-index: -1;
+    }
+
+    .about-text h2 {
+      font-size: clamp(1.8rem, 5vw, 2.4rem);
+      margin-bottom: 28px;
+      color: #f7fafc;
+      font-weight: 600;
+      line-height: 1.3;
+      position: relative;
+      background: linear-gradient(135deg, #f7fafc 0%, #e2e8f0 50%, #0070f3 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .about-text h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      
+      width: 80px;
+      height: 3px;
+      background: linear-gradient(90deg, #0070f3, #38a169);
+      border-radius: 2px;
+      box-shadow: 0 2px 8px rgba(0, 112, 243, 0.2);
+    }
+
+    .about-text p {
+      font-size: clamp(1rem, 3vw, 1.15rem);
+      margin-bottom: 24px;
+      color: #e2e8f0;
+      line-height: 1.7;
+      font-weight: 400;
+      padding: 24px;
+      background: rgba(45, 55, 72, 0.9);
+      border-radius: 12px;
+      border-right: 4px solid #0070f3;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      position: relative;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(0, 112, 243, 0.2);
+    }
+
+    .about-text p:hover {
+      background: rgba(45, 55, 72, 0.95);
+      transform: translateX(-6px) translateY(-2px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+      border-right-color: #38a169;
+    }
+
+    .about-image {
+      text-align: center;
+      position: relative;
+    }
+
+    .about-image::before {
+      content: '';
+      position: absolute;
+      top: -20px;
+      right: -20px;
+      width: 110%;
+      height: 110%;
+      background: linear-gradient(135deg, rgba(0, 112, 243, 0.06), rgba(56, 161, 105, 0.06));
+      border-radius: 20px;
+      z-index: -1;
+    }
+
+    .about-image::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 150px;
+      height: 150px;
+      background: rgba(0, 112, 243, 0.04);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      z-index: -2;
+    }
+
+    .lottie-container {
+      position: absolute;
+      top: -40px;
+      left: -40px;
+      width: 120px;
+      height: 120px;
+      z-index: 1;
+      opacity: 0.8;
+    }
+
+    .lottie-container svg {
+      width: 100%;
+      height: 100%;
+      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+    }
+
+    .profile-image {
+      width: 100%;
+      max-width: 380px;
+      height: 380px;
+      border-radius: 16px;
+      object-fit: cover;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.15);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 4px solid white;
+      position: relative;
+      filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.1));
+    }
+
+    .profile-image:hover {
+      transform: scale(1.03) translateY(-6px) rotate(1deg);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+      filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.15));
+    }
+
+    /* Additional animations */
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes slideInRight {
+      from {
+        opacity: 0;
+        transform: translateX(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.05);
+      }
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    .stat-number {
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    .testimonial-card:hover .author-avatar img {
+      animation: pulse 1s ease-in-out;
+    }
+
+    .service-icon:hover {
+      animation: float 2s ease-in-out infinite;
+    }
+
+    /* Services Grid */
+    .services {
+      background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+      position: relative;
+    }
+
+    .services::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      background: #2d3748;
+      clip-path: polygon(0 0, 100% 80%, 100% 100%, 0 100%);
+    }
+
+    .services-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(circle at 20% 40%, rgba(0, 112, 243, 0.02) 0%, transparent 50%),
+        radial-gradient(circle at 80% 60%, rgba(56, 161, 105, 0.02) 0%, transparent 50%);
+      z-index: 0;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: 28px;
+      margin-top: 80px;
+    }
+
+    .service-card {
+      background: #2d3748;
+      border-radius: 12px;
+      padding: 28px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+      transition: all 0.3s ease;
+      border: 1px solid #4a5568;
+      position: relative;
+      overflow: hidden;
+      height: fit-content;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: #0070f3;
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+
+    .service-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .service-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+      border-color: #cbd5e0;
+    }
+
+    .service-icon {
+      width: 48px;
+      height: 48px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #0070f3;
+      border-radius: 8px;
+      padding: 12px;
+      box-shadow: 0 2px 8px rgba(0, 112, 243, 0.15);
+      transition: all 0.3s ease;
+    }
+
+    .service-card:hover .service-icon {
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(0, 112, 243, 0.2);
+    }
+
+    .service-icon svg {
+      width: 26px;
+      height: 26px;
+
+      filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+    }
+
+    .service-title {
+      font-size: clamp(1.15rem, 4vw, 1.35rem);
+      margin-bottom: 18px;
+      color: #f7fafc;
+      font-weight: 700;
+      line-height: 1.3;
+      position: relative;
+    }
+
+    .service-title::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      right: 0;
+      width: 25px;
+      height: 2px;
+      background: #0070f3;
+      border-radius: 1px;
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+
+    .service-card:hover .service-title::after {
+      transform: scaleX(1);
+    }
+
+    .service-description {
+      color: #cbd5e0;
+      margin-bottom: 22px;
+      line-height: 1.7;
+      font-size: clamp(0.9rem, 3vw, 0.95rem);
+      font-weight: 400;
+    }
+
+    .service-features {
+      list-style: none;
+    }
+
+    .service-features li {
+      padding: 10px 0;
+      position: relative;
+      padding-right: 32px;
+      color: #cbd5e0;
+      font-size: clamp(0.9rem, 3vw, 0.95rem);
+      line-height: 1.6;
+      font-weight: 400;
+      transition: all 0.3s ease;
+    }
+
+    .service-features li:hover {
+      color: #f7fafc;
+      transform: translateX(-3px);
+    }
+
+    .service-features li::before {
+      content: '✓';
+      position: absolute;
+      right: 0;
+      color: #38a169;
+      font-weight: bold;
+      background: #f0fff4;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      box-shadow: 0 1px 4px rgba(56, 161, 105, 0.15);
+      transition: all 0.3s ease;
+    }
+
+    .service-features li:hover::before {
+      transform: scale(1.05);
+      box-shadow: 0 2px 6px rgba(56, 161, 105, 0.2);
+    }
+
+    /* Service Card Buttons */
+    .service-card-btn {
+      margin-top: 24px;
+      text-align: center;
+    }
+
+    .btn-card {
+      display: inline-block;
+      padding: 12px 24px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      background: linear-gradient(135deg, #0070f3 0%, #38a169 100%);
+      color: white;
+      border: none;
+      box-shadow: 0 2px 8px rgba(0, 112, 243, 0.2);
+    }
+
+    .btn-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(0, 112, 243, 0.3);
+      background: linear-gradient(135deg, #0056b3 0%, #2f855a 100%);
+      color: white;
+    }
+
+    .btn-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.5s ease;
+      z-index: -1;
+    }
+
+    .btn-card:hover::before {
+      left: 100%;
+    }
+
+
+
+    /* Gallery Section */
+    .gallery {
+      background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+      position: relative;
+    }
+
+    .gallery::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      background: #2d3748;
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 80%);
+    }
+
+    .gallery-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(circle at 30% 70%, rgba(0, 112, 243, 0.02) 0%, transparent 50%),
+        radial-gradient(circle at 70% 30%, rgba(56, 161, 105, 0.02) 0%, transparent 50%);
+      z-index: 0;
+    }
+
+    /* Testimonials Section */
+    .testimonials {
+      background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+      position: relative;
+    }
+
+    .testimonials-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(circle at 20% 30%, rgba(0, 112, 243, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(56, 161, 105, 0.03) 0%, transparent 50%);
+      z-index: 0;
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 32px;
+      margin-top: 60px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .testimonial-card {
+      background: #2d3748;
+      border-radius: 16px;
+      padding: 32px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease;
+      border: 1px solid #4a5568;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .testimonial-card::before {
+      content: '"';
+      position: absolute;
+      top: -20px;
+      right: 20px;
+      font-size: 5rem;
+      color: #0070f3;
+      opacity: 0.3;
+      font-family: serif;
+      font-weight: bold;
+    }
+
+
+
+    .testimonial-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    }
+
+    .testimonial-content p {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: #e2e8f0;
+      margin-bottom: 24px;
+      font-style: italic;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .author-avatar img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #0070f3;
+    }
+
+    .author-info h4 {
+      color: #f7fafc;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .author-info p {
+      color: #cbd5e0;
+      font-size: 0.9rem;
+    }
+
+    /* Statistics Section */
+    .statistics {
+      background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+      color: white;
+      position: relative;
+    }
+
+    .statistics-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(circle at 30% 20%, rgba(0, 112, 243, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 70% 80%, rgba(56, 161, 105, 0.1) 0%, transparent 50%);
+      z-index: 0;
+    }
+
+    .statistics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 48px;
+      margin-top: 60px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 24px;
+    }
+
+    .stat-number {
+      font-size: clamp(2.5rem, 6vw, 3.5rem);
+      font-weight: 800;
+      color: #0070f3;
+      margin-bottom: 16px;
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 1.1rem;
+      color: #e2e8f0;
+      line-height: 1.4;
+    }
+
+    /* Contact CTA Section */
+    .contact-cta {
+      background: linear-gradient(135deg, #0070f3 0%, #38a169 100%);
+      color: white;
+      position: relative;
+    }
+
+    .contact-cta-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+      z-index: 0;
+    }
+
+    .cta-content {
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-content h2 {
+      font-size: clamp(2rem, 5vw, 2.8rem);
+      margin-bottom: 24px;
+      font-weight: 700;
+    }
+
+    .cta-content p {
+      font-size: 1.2rem;
+      margin-bottom: 40px;
+      opacity: 0.9;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .cta-buttons .btn {
+      background: white;
+      color: #0070f3;
+      border: 2px solid white;
+    }
+
+    .cta-buttons .btn:hover {
+      background: transparent;
+      color: white;
+    }
+
+    .cta-buttons .btn-outline {
+      background: transparent;
+      color: white;
+      border-color: white;
+    }
+
+    .cta-buttons .btn-outline:hover {
+      background: white;
+      color: #0070f3;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      margin-top: 80px;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+      aspect-ratio: 4/3;
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    }
+
+    .gallery-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: all 0.3s ease;
+    }
+
+    .gallery-item:hover .gallery-image {
+      transform: scale(1.02);
+    }
+
+    .gallery-overlay {
+      display: none;
+    }
+
+    .gallery-overlay h3 {
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .gallery-overlay p {
+      font-size: 0.9rem;
+      opacity: 0.9;
+      line-height: 1.4;
+      font-weight: 400;
+    }
+
+    .gallery-cta {
+      text-align: center;
+      margin-top: 48px;
+    }
+
+    .btn-gallery {
+      background: linear-gradient(135deg, #0070f3 0%, #38a169 100%);
+      color: white;
+      padding: 16px 32px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      display: inline-block;
+      text-decoration: none;
+    }
+
+    .btn-gallery:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 112, 243, 0.3);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1024px) {
+      .services-grid {
+        grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+        gap: 28px;
+      }
+      
+      .about-content {
+        gap: 60px;
+      }
+
+      .gallery-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        padding: 100px 0 80px;
+        min-height: 80vh;
+        background-attachment: scroll;
+      }
+
+      .hero-title {
+        margin-bottom: 20px;
+      }
+
+      .hero-subtitle {
+        margin-bottom: 24px;
+      }
+
+      .hero-description {
+        margin-bottom: 36px;
+      }
+
+      .hero-cta {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .btn {
+        width: 100%;
+        max-width: 280px;
+        text-align: center;
+      }
+
+      .about-content {
+        grid-template-columns: 1fr;
+        gap: 48px;
+        text-align: center;
+        margin-top: 40px;
+      }
+
+      .about-text {
+        order: 2;
+      }
+
+      .about-image {
+        order: 1;
+      }
+
+      .profile-image {
+        max-width: 320px;
+        height: 320px;
+      }
+
+      .lottie-container {
+        top: -20px;
+        left: -20px;
+        width: 80px;
+        height: 80px;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        margin-top: 60px;
+      }
+
+      .service-card {
+        padding: 28px 20px;
+      }
+
+      .gallery-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 16px;
+        margin-top: 60px;
+      }
+
+      .testimonials-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        margin-top: 40px;
+      }
+
+      .testimonial-card {
+        padding: 24px 20px;
+      }
+
+      .statistics-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 32px;
+        margin-top: 40px;
+      }
+
+      .stat-item {
+        padding: 20px 16px;
+      }
+
+      .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .cta-buttons .btn {
+        width: 100%;
+        max-width: 280px;
+      }
+
+      .testimonials-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        margin-top: 30px;
+      }
+
+      .testimonial-card {
+        padding: 20px 16px;
+      }
+
+      .testimonial-content p {
+        font-size: 1rem;
+      }
+
+      .statistics-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        margin-top: 30px;
+      }
+
+      .stat-number {
+        font-size: clamp(2rem, 5vw, 2.5rem);
+      }
+
+      .cta-content h2 {
+        font-size: clamp(1.8rem, 4vw, 2.2rem);
+      }
+
+      .cta-content p {
+        font-size: 1.1rem;
+        margin-bottom: 32px;
+      }
+
+      section {
+        padding: 80px 0;
+      }
+
+      .container {
+        padding: 0 20px;
+      }
+
+      .section-title {
+        margin-bottom: 60px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero {
+        padding: 80px 0 60px;
+        min-height: 70vh;
+      }
+
+      .hero-title {
+        margin-bottom: 16px;
+      }
+
+      .hero-subtitle {
+        margin-bottom: 20px;
+      }
+
+      .hero-description {
+        margin-bottom: 32px;
+      }
+
+      .btn {
+        padding: 14px 24px;
+        font-size: 0.95rem;
+        max-width: 240px;
+      }
+
+      .service-card {
+        padding: 20px 16px;
+      }
+
+      .service-icon {
+        width: 42px;
+        height: 42px;
+        margin-bottom: 16px;
+      }
+
+      .about-content {
+        gap: 32px;
+        margin-top: 30px;
+      }
+
+      .about-text h2 {
+        font-size: clamp(1.6rem, 4vw, 2rem);
+      }
+
+      .about-text p {
+        padding: 16px;
+        font-size: clamp(0.9rem, 2.5vw, 1rem);
+      }
+
+      .profile-image {
+        max-width: 260px;
+        height: 260px;
+      }
+
+      .lottie-container {
+        top: -15px;
+        left: -15px;
+        width: 60px;
+        height: 60px;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        margin-top: 40px;
+      }
+
+      section {
+        padding: 60px 0;
+      }
+
+      .container {
+        padding: 0 16px;
+      }
+    }
+
+    /* Smooth transitions for all interactive elements */
+    * {
+      transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+    }
+  </style>
+
+  script.
+    // Intersection Observer for scroll fade effects
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    // Observe all fade elements
+    document.addEventListener('DOMContentLoaded', () => {
+      const fadeElements = document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right, .scale-in');
+      fadeElements.forEach(el => observer.observe(el));
+    });
+
+    // Parallax effect for background elements
+    window.addEventListener('scroll', () => {
+      const scrolled = window.pageYOffset;
+      const parallaxElements = document.querySelectorAll('.about::before, .about::after');
+
+      parallaxElements.forEach(el => {
+        const speed = 0.5;
+        const yPos = -(scrolled * speed);
+        el.style.transform = `translateY(${yPos}px)`;
+      });
+    });
+
+    // Counter animation for statistics
+    function animateCounter(element, target, duration = 2000) {
+      let start = 0;
+      const increment = target / (duration / 16);
+      
+      function updateCounter() {
+        start += increment;
+        if (start < target) {
+          element.textContent = Math.floor(start) + (element.textContent.includes('+') ? '+' : '') + (element.textContent.includes('%') ? '%' : '');
+          requestAnimationFrame(updateCounter);
+        } else {
+          element.textContent = target + (element.textContent.includes('+') ? '+' : '') + (element.textContent.includes('%') ? '%' : '');
+        }
+      }
+      
+      updateCounter();
+    }
+
+    // Animate statistics when they come into view
+    const statsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const statNumber = entry.target.querySelector('.stat-number');
+          const text = statNumber.textContent;
+          const number = parseInt(text.replace(/[^0-9]/g, ''));
+          
+          if (text.includes('+')) {
+            animateCounter(statNumber, number, 2000);
+          } else if (text.includes('%')) {
+            animateCounter(statNumber, number, 2000);
+          } else {
+            animateCounter(statNumber, number, 2000);
+          }
+          
+          statsObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const statItems = document.querySelectorAll('.stat-item');
+      statItems.forEach(item => statsObserver.observe(item));
+    });
+
+    // Smooth scroll for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+  // Hero Section
+  section.hero
+    .container
+      .hero-content
+        h1.hero-title דרך לחיים
+        p.hero-subtitle מיזם ייחודי ששם את הילד במרכז, ומשלב ספורט עם חינוך וערכים
+        p.hero-description
+          | שמי עמית קורקוש, מחנך, מאמן ומרצה עם ניסיון של מעל 10 שנים בעבודה עם ילדים ונוער במסגרות חינוכיות וספורטיביות.
+        .hero-cta
+          a.btn(href="#services") שירותים שלנו
+          a.btn.btn-outline(href="#about") למידע נוסף
+
+  // About Section
+  section#about.about
+    .about-background
+    .container
+      .about-content
+        .about-text.fade-in-left
+          h2.section-title.fade-in מי אני
+          p
+            | שמי עמית קורקוש, מחנך, מאמן ומרצה עם ניסיון של מעל 10 שנים בעבודה עם ילדים ונוער במסגרות חינוכיות וספורטיביות.
+          p
+            | במהלך השנים יצרתי גישה מיוחדת שמצליחה לגעת בילדים שלא מצאו את מקומם – דרך חיבור אישי, עבודה מקצועית, והרבה נשמה.
+          p
+            | אני מזמין אתכם לקחת חלק באחת מהתוכניות שלנו – חוגים, הרצאות, סדנאות או שיתופי פעולה, ולגלות איך ספורט יכול להפוך לכלי לחיים.
+        .about-image.fade-in-right
+          .lottie-container
+            lottie-player(src="https://assets2.lottiefiles.com/packages/lf20_xyadoh9h.json" background="transparent" speed="0.8" style="width: 100%; height: 100%;" loop autoplay)
+          img.profile-image.scale-in(src="/pfp2.jpeg" alt="עמית קורקוש - מחנך ומאמן")
+
+  // Services Section
+  section#services.services
+    .services-background
+    .container
+      h2.section-title.fade-in השירותים שלנו
+      .services-grid
+        .service-card.fade-in
+          .service-icon
+            svg(xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24")
+              path(
+                fill="currentColor"
+                d="M18 8.31c-.36-.41-.73-.82-1.12-1.21l-.29-.27l.14-.12a3.15 3.15 0 0 0 .9-3.49A3.91 3.91 0 0 0 14 1v2a2 2 0 0 1 1.76 1c.17.4 0 .84-.47 1.31c-.07.08-.15.13-.22.2c-3-2.41-6.29-3.77-7.9-2.16a2.16 2.16 0 0 0-.41.59v.1l-.18.53l-4.41 13.1A3.28 3.28 0 0 0 5.28 22a3.21 3.21 0 0 0 1-.17L20 17.28a1 1 0 0 0 .43-.31l.21-.18c1.43-1.44.51-4.21-1.41-6.9A6.63 6.63 0 0 1 23 9V7a8.44 8.44 0 0 0-5 1.31zM5.7 19.93a1.29 1.29 0 0 1-1.63-1.63l1.36-4.1a10.7 10.7 0 0 0 4.29 4.39zm7-2.33a8.87 8.87 0 0 1-6.3-6.29l1-3l.06.09c.11.22.25.45.39.68s.16.29.26.44s.33.48.51.73s.19.28.3.42s.43.55.66.82l.29.35c.34.39.7.77 1.08 1.16s.68.64 1 1l.33.28l.78.63l.37.28c.28.2.55.4.83.58l.31.2c.36.22.72.43 1.07.61h.05zm6.51-2.23h-.06c-.69.38-3.56-.57-6.79-3.81c-.34-.34-.66-.67-.95-1l-.29-.35l-.53-.64l-.29-.4c-.13-.19-.27-.37-.39-.55l-.26-.42l-.29-.47c-.08-.14-.14-.27-.21-.4s-.15-.26-.21-.4a3.31 3.31 0 0 1-.14-.36c-.05-.13-.11-.26-.15-.38S8.6 6 8.57 5.88s-.05-.22-.07-.32a2.26 2.26 0 0 1 0-.26a1 1 0 0 1 0-.24l.11-.31c.36-.36 2.23 0 4.73 1.9A4.13 4.13 0 0 1 12 7v2a6.45 6.45 0 0 0 3-.94l.48.46c.42.42.81.85 1.18 1.28a5.32 5.32 0 0 0-.6 3.4l2-.39a3.57 3.57 0 0 1 0-1.12a11.3 11.3 0 0 1 .81 1.45c.56 1.32.52 2.06.34 2.23z"
+              )
+          h3.service-title ימי הולדת ספורטיביים
+          p.service-description
+            | הופכים כל חגיגה לאירוע בלתי נשכח! תחנות ספורט מרתקות, משחקי אתגר ותחרויות
+          ul.service-features
+            li תחנות ספורט מרתקות
+            li משחקי אתגר ותחרויות
+            li מוזיקה מקפיצה ואווירה מחשמלת
+          .service-card-btn
+            a.btn.btn-card(href="/birthday-parties") גלו עוד
+
+        .service-card.fade-in
+          .service-icon
+            svg(xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 14 14")
+              g(fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round")
+                path(d="M13.48 7.516a6.5 6.5 0 1 1-6.93-7")
+                path(d="M9.79 8.09A3 3 0 1 1 5.9 4.21")
+                path(d="M7 7l2.5-2.5")
+                path(d="M9.5 5l-2-.5l-.5-2l2-2l.5 2l2 .5z")
+          h3.service-title פרויקט "דרך לחיים"
+          p.service-description
+            | פרויקט ייחודי שפיתח עמית קורקוש, המשלב בין פעילות ספורטיבית להעצמה אישית
+          ul.service-features
+            li מפגש שבועי של 45 דקות
+            li משולב בבתי ספר ומסגרות חינוכיות
+            li משלב פעילות ספורטיבית ומסר לחיים
+          .service-card-btn
+            a.btn.btn-card(href="/derech-lechaim") גלו עוד
+
+        .service-card.fade-in
+          .service-icon
+            svg(xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24")
+              path(
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+                d="M10.704 4.325a1.5 1.5 0 0 1 2.592 0l1.818 3.12a1.5 1.5 0 0 0 .978.712l3.53.764a1.5 1.5 0 0 1 .8 2.465l-2.405 2.693a1.5 1.5 0 0 0-.374 1.15l.363 3.593a1.5 1.5 0 0 1-2.097 1.524l-3.304-1.456a1.5 1.5 0 0 0-1.21 0l-3.304 1.456a1.5 1.5 0 0 1-2.097-1.524l.363-3.593a1.5 1.5 0 0 0-.373-1.15l-2.406-2.693a1.5 1.5 0 0 1 .8-2.465l3.53-.764a1.5 1.5 0 0 0 .979-.711z"
+              )
+          h3.service-title אימונים אישיים בכדורגל
+          p.service-description
+            | הרבה יותר מסתם אימון כדורגל - שיפור יכולות המשחק, חיזוק הכושר והטכניקה
+          ul.service-features
+            li תוכנית מותאמת אישית
+            li שיפור טכניקה ויכולות
+            li אימון מנטלי לצד פיזי
+          .service-card-btn
+            a.btn.btn-card(href="/personal-training") גלו עוד
+
+        .service-card.fade-in
+          .service-icon
+            svg(xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24")
+              g(
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+              )
+                path(d="m4 6l8-4l8 4m-2 4l4 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-8l4-2")
+                path(d="M14 22v-4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v4m8-17v17M6 5v17")
+                circle(cx="12" cy="9" r="2")
+          h3.service-title ימי שיא לבתי ספר
+          p.service-description
+            | חוויה שמחברת את כולם - יום מלא באתגרים, משחקים והפעלות שכולם יכולים להשתתף בהם
+          ul.service-features
+            li תחנות כדורגל, אתלטיקה וקליעה
+            li משחקי גיבוש ותחרויות
+            li מוזיקה מקפיצה ואווירת חגיגה
+          .service-card-btn
+            a.btn.btn-card(href="/school-events") גלו עוד
+
+        .service-card.fade-in
+          .service-icon
+            svg(xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 256 256")
+              path(
+                fill="currentColor"
+                d="M176 232a8 8 0 0 1-8 8H88a8 8 0 0 1 0-16h80a8 8 0 0 1 8 8Zm40-128a87.55 87.55 0 0 1-33.64 69.21A16.24 16.24 0 0 0 176 186v6a16 16 0 0 1-16 16H96a16 16 0 0 1-16-16v-6a16.24 16.24 0 0 0-6.23-12.66A87.59 87.59 0 0 1 40 104.49C39.74 56.83 78.26 17.14 125.88 16A88 88 0 0 1 216 104Zm-16 0a72 72 0 0 0-73.74-72c-39 .92-70.47 33.39-70.26 72.39a71.65 71.65 0 0 0 27.64 56.3A32 32 0 0 1 96 186v6h64v-6a32.15 32.15 0 0 1 12.47-25.35A71.65 71.65 0 0 0 200 104Zm-16.11-9.34a57.6 57.6 0 0 0-46.56-46.55a8 8 0 0 0-2.66 15.78c16.57 2.79 30.63 16.85 33.44 33.45A8 8 0 0 0 176 104a9 9 0 0 0 1.35-.11a8 8 0 0 0 6.54-9.23Z"
+              )
+          h3.service-title הרצאות חינוכיות
+          p.service-description
+            | חינוך בגישה אישית - להבין כל ילד ולגעת בלב. הרצאות מעוררות השראה למורים ומחנכים
+          ul.service-features
+            li 45 דקות הרצאה + 15 דקות שאלות
+            li כלים פרקטיים להתמודדות עם אתגרים
+            li סיפורים אישיים מהשטח
+          .service-card-btn
+            a.btn.btn-card(href="/lectures") גלו עוד
+
+        .service-card.fade-in
+          .service-icon
+            svg(xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24")
+              path(
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+                d="m12 8l3.804 2.764M12 8l-3.804 2.764M12 8V5m3.804 5.764l-1.453 4.472m1.453-4.472L18.5 9.5m-4.149 5.736H9.65m4.702 0L16 17.5m-6.351-2.264l-1.453-4.472m1.453 4.472L8 17.5m.196-6.736L5.5 9.5m0 0L2.05 13M5.5 9.5l-1-4.115m14 4.115l3.45 3.5M18.5 9.5l1-4.115M12 5L8.624 2.584M12 5l3.376-2.416M8 17.5L3.338 17M8 17.5l2.5 4.388M16 17.5l4.662-.5M16 17.5l-2.5 4.388M22 12c0 5.523-4.477 10-10 10S2 17.523 2 12S6.477 2 12 2s10 4.477 10 10Z"
+              )
+          h3.service-title אימוני כדורגל מקצועיים
+          p.service-description
+            | ברוכים הבאים לעולם הכדורגל שבו כל שחקן מקבל את הבמה להצליח!
+          ul.service-features
+            li שיטת עבודה אישית
+            li פיתוח יסודות המשחק
+            li עבודה מנטלית לצד פיזית
+          .service-card-btn
+            a.btn.btn-card(href="/football-training") גלו עוד
+
+        // Gallery Section
+  section#gallery.gallery
+    .gallery-background
+    .container
+      h2.section-title.fade-in גלריה
+      .gallery-grid
+        .gallery-item.fade-in
+          img.gallery-image(src="/WhatsApp Image 2025-08-11 at 14.28.36 (1).jpeg" alt="פרויקט דרך לחיים")
+
+        .gallery-item.fade-in
+          img.gallery-image(src="/WhatsApp Image 2025-08-11 at 14.28.34 (1).jpeg" alt="אימונים אישיים")
+          .gallery-overlay
+            h3 אימונים אישיים
+            p התאמה אישית לצרכים של כל ילד
+
+        .gallery-item.fade-in
+          img.gallery-image(src="/WhatsApp Image 2025-08-11 at 14.28.34.jpeg" alt="חוגי כדורגל")
+          .gallery-overlay
+            h3 חוגי כדורגל
+            p אימונים מקצועיים עם דגש על עבודת צוות
+
+        .gallery-item.fade-in
+          img.gallery-image(src="/WhatsApp Image 2025-08-11 at 14.28.33 (1).jpeg" alt="תוכנית גפן")
+          .gallery-overlay
+            h3 תוכנית גפן
+            p ניצול תקציב הגפ"ן לפעילויות העשרה ייחודיות
+
+        .gallery-item.fade-in
+          img.gallery-image(src="/WhatsApp Image 2025-08-11 at 14.28.31.jpeg" alt="עבודת צוות")
+          .gallery-overlay
+            h3 עבודת צוות
+            p פיתוח כישורים חברתיים ועבודת צוות
+
+        .gallery-item.fade-in
+          img.gallery-image(src="/WhatsApp Image 2025-08-11 at 14.28.30 (3).jpeg" alt="ספורט אתגרי")
+          .gallery-overlay
+            h3 ספורט אתגרי
+            p פעילויות שמפתחות קואורדינציה וחוסן פיזי
+
+        .gallery-item.fade-in
+          img.gallery-image(src="/WhatsApp Image 2025-08-11 at 14.28.30 (2).jpeg" alt="משחקי כדור")
+          .gallery-overlay
+            h3 משחקי כדור
+            p משחקים שמפתחים כישורים ספורטיביים וחברתיים
+
+        .gallery-item.fade-in
+          img.gallery-image(src="/WhatsApp Image 2025-08-11 at 14.28.30 (1).jpeg" alt="פעילויות קהילתיות")
+          .gallery-overlay
+            h3 פעילויות קהילתיות
+            p חיבור בין ספורט לקהילה וערכים
+
+        .gallery-item.fade-in
+          img.gallery-image(src="/WhatsApp Image 2025-08-11 at 14.28.30.jpeg" alt="פיתוח אישי")
+          .gallery-overlay
+            h3 פיתוח אישי
+            p בניית ביטחון עצמי ודימוי עצמי חיובי
+      
+      .gallery-cta.fade-in
+        a.btn.btn-gallery(href="/gallery") צפו בעוד תמונות וסרטונים
+
+  // Testimonials Section
+  section#testimonials.testimonials
+    .testimonials-background
+    .container
+      h2.section-title.fade-in מה אומרים עלינו
+      .testimonials-grid
+        .testimonial-card.fade-in
+          .testimonial-content
+            p לכל המעוניין, ממליצה בחום על הפעילות של it moov – פעילות ספורטיבית עם מדריכים מקצועיים והפעלות יצירתיות, עם דגש על גיבוש כיתתי ושבירת שגרה, מומלץ לכל תלמיד ותלמידה.
+          .testimonial-author
+            .author-info
+              h4 מלי מכלוף
+              p מנהלת יונתן, צופים
+        .testimonial-card.fade-in
+          .testimonial-content
+            p אני שמח להמליץ בחום על קורס הכדורגל בניהולו המקצועי של עמית קורקוס – קורס ברמה מקצועית גבוהה עם דגש על פיתוח יכולות ספורטיביות, תכניות וחברתיות מגוונות, סבלנות ותבונה עמוקה בתחום, חיבור חזק בין המשתתפים והשקעה רבה של הצוות, חוויה מעצימה ומשמעותית לכל המשתתפים.
+          .testimonial-author
+            .author-info
+              h4 נעם קריגמן
+              p מנהל תיכון אורט נופים 
+        .testimonial-card.fade-in
+          .testimonial-content
+            p אני רוצה להמליץ על תכנית העצמה בספורט – דרך לחיים, בהובלת עמית קורקוש – יוזמה חשובה לפיתוח כושר גופני, עבודת צוות וניהול זמן, עם מעורבות אישית ומקצועית, שיפור בכישורים, הערכה עצמית וביטחון, חיבור ואהבה מצד הצוות והתלמידים.
+          .testimonial-author
+            .author-info
+              h4 טל פרץ
+              p מנהלת בית ספר אהרונוביץ
+
+  // Statistics Section
+  section#statistics.statistics
+    .statistics-background
+    .container
+      .statistics-grid
+        .stat-item.fade-in
+          .stat-number 1000+
+          .stat-label ילדים שהשתתפו בתוכניות
+        .stat-item.fade-in
+          .stat-number 15+
+          .stat-label בתי ספר עובדים איתנו
+        .stat-item.fade-in
+          .stat-number 10+
+          .stat-label שנות ניסיון
+        .stat-item.fade-in
+          .stat-number 98%
+          .stat-label שביעות רצון הורים
+
+  // Contact CTA Section
+  section#contact-cta.contact-cta
+    .contact-cta-background
+    .container
+      .cta-content.fade-in
+        h2 מוכנים להתחיל?
+        p בואו נבנה יחד עתיד טוב יותר לילדים שלכם
+        .cta-buttons
+          a.btn(href="/contact") צרו קשר עכשיו
+          a.btn.btn-outline(href="/services") למידע נוסף
+

@@ -1,0 +1,701 @@
+extends layout
+
+block content
+  style.
+    body {
+      direction: rtl;
+      font-family: 'Inter', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.6;
+      color: #e2e8f0;
+      background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+      overflow-x: hidden;
+    }
+
+    /* Hero Section - Derech Lechaim Theme */
+    .hero {
+      background: linear-gradient(135deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)), url('/WhatsApp Image 2025-08-11 at 14.28.36 (2).jpeg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      color: white;
+      padding: 120px 0 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.4) 100%);
+      opacity: 1;
+    }
+
+    
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+      padding: 0 24px;
+    }
+
+    .hero-title {
+      font-size: clamp(2.5rem, 6vw, 3.5rem);
+      font-weight: 700;
+      margin-bottom: 24px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      animation: fadeInDown 1s ease-out;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      background: linear-gradient(45deg, #10b981, #059669, #10b981);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1.1rem, 3.5vw, 1.4rem);
+      margin-bottom: 28px;
+      opacity: 0.9;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      animation: fadeInUp 1s ease-out 0.3s both;
+      line-height: 1.5;
+      font-weight: 500;
+    }
+
+    /* Content Sections - Derech Lechaim Theme */
+    .content-section {
+      padding: 80px 0;
+      background: #1a202c;
+      position: relative;
+    }
+
+    .content-section:nth-child(even) {
+      background: #2d3748;
+    }
+
+    .content-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #10b981, #059669, #10b981);
+      background-size: 200% 100%;
+      animation: gradientShift 3s ease-in-out infinite;
+    }
+
+    @keyframes gradientShift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    /* Hero Animations */
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .content-grid-full-width {
+      grid-template-columns: 1fr;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .content-text-full-width {
+      padding: 40px; /* Adjust padding for full-width content */
+    }
+
+    /* Full-width section styling */
+    .content-grid-full-width {
+      grid-template-columns: 1fr;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .content-text-full-width {
+      text-align: center;
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.08), rgba(5, 150, 105, 0.08));
+      border: 2px solid rgba(16, 185, 129, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .content-text-full-width::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: linear-gradient(90deg, #10b981, #059669, #10b981);
+      background-size: 200% 100%;
+      animation: gradientShift 3s ease-in-out infinite;
+    }
+
+    .content-text-full-width h3 {
+      font-size: 2rem;
+      margin-bottom: 30px;
+      background: linear-gradient(45deg, #10b981, #059669);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .content-text-full-width ol {
+      text-align: right;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .content-text-full-width ol li {
+      background: rgba(16, 185, 129, 0.05);
+      border: 1px solid rgba(16, 185, 129, 0.1);
+      border-radius: 15px;
+      padding: 20px 25px 20px 60px;
+      margin-bottom: 20px;
+      position: relative;
+      transition: all 0.3s ease;
+      font-weight: 500;
+      color: white;
+    }
+
+    .content-text-full-width ol li:hover {
+      background: rgba(16, 185, 129, 0.1);
+      border-color: rgba(16, 185, 129, 0.2);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(16, 185, 129, 0.15);
+    }
+
+    .content-text-full-width ol li::before {
+      content: counter(ol-counter);
+      counter-increment: ol-counter;
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: white;
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.1rem;
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+    }
+
+    .content-text-full-width::after {
+      content: '';
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      background: radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, transparent 70%);
+      border-radius: 50%;
+      opacity: 0.6;
+    }
+
+    .content-text-full-width .steps-icon {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      width: 40px;
+      height: 40px;
+      background: rgba(16, 185, 129, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0.7;
+    }
+
+    .content-text-full-width ol li::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(135deg, #10b981, #059669);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      border-radius: 0 2px 2px 0;
+    }
+
+    .content-text-full-width ol li:hover::after {
+      opacity: 1;
+    }
+
+    .content-text {
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: 20px;
+      padding: 40px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .content-text::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #10b981, #22c55e);
+    }
+
+    .content-text h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+      color: #22c55e;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .content-text h3 svg {
+      width: 28px;
+      height: 28px;
+      color: #10b981;
+    }
+
+    .content-text p {
+      margin-bottom: 20px;
+      line-height: 1.7;
+      color: #e2e8f0;
+    }
+
+    .content-text ul, .content-text ol {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .content-text li {
+      margin-bottom: 15px;
+      padding-right: 60px;
+      color: #e2e8f0;
+      position: relative;
+      line-height: 1.6;
+    }
+
+    .content-text li::before {
+      content: '•';
+      position: absolute;
+      right: 20px;
+      top: 0;
+      color: #10b981;
+      font-size: 20px;
+      font-weight: bold;
+      line-height: 1;
+    }
+
+    .content-text ol li::before {
+      content: counter(ol-counter);
+      counter-increment: ol-counter;
+      color: white;
+      font-weight: 600;
+      margin-left: 25px;
+      position: absolute;
+      right: 0;
+      top: 0;
+      line-height: 1;
+    }
+
+    .content-text ol {
+      counter-reset: ol-counter;
+    }
+
+    /* Section Titles - Derech Lechaim Theme */
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 60px;
+      color: #22c55e;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background: linear-gradient(90deg, #10b981, #22c55e, #059669);
+      border-radius: 2px;
+    }
+
+    .section-title svg {
+      width: 32px;
+      height: 32px;
+      color: #10b981;
+    }
+
+    /* CTA Section - Derech Lechaim Theme */
+    .cta-section {
+      text-align: center;
+      padding: 100px 60px;
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.05), rgba(34, 197, 94, 0.05));
+      border-radius: 30px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-description {
+      font-size: 1.2rem;
+      margin-bottom: 40px;
+      color: #e2e8f0;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-button-container {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 32px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.5s;
+    }
+
+    .btn:hover::before {
+      left: 100%;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #10b981, #22c55e);
+      color: white;
+      box-shadow: 0 8px 25px rgba(16, 185, 129, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 35px rgba(16, 185, 129, 0.4);
+    }
+
+    .btn-secondary {
+      background: linear-gradient(135deg, #22c55e, #059669);
+      color: #1a202c;
+      box-shadow: 0 8px 25px rgba(34, 197, 94, 0.3);
+    }
+
+    .btn-secondary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 35px rgba(34, 197, 94, 0.4);
+    }
+
+    .btn svg {
+      width: 24px;
+      height: 24px;
+    }
+
+
+
+    /* Responsive Design */
+    @media (max-width: 1024px) {
+      .content-grid {
+        gap: 40px;
+      }
+      
+      .cta-section {
+        padding: 80px 40px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .content-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+      
+      .content-text {
+        padding: 30px;
+      }
+      
+
+      
+      .content-text-full-width {
+        padding: 30px 20px;
+      }
+      
+      .content-text-full-width h3 {
+        font-size: 1.6rem;
+        margin-bottom: 25px;
+      }
+      
+      .content-text-full-width ol li {
+        padding: 18px 20px 18px 55px;
+        margin-bottom: 15px;
+      }
+      
+      .content-text-full-width ol li::before {
+        width: 30px;
+        height: 30px;
+        font-size: 1rem;
+        right: 15px;
+      }
+      
+      .cta-section {
+        padding: 60px 30px;
+      }
+      
+      .cta-button-container {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .btn {
+        width: 100%;
+        max-width: 300px;
+        justify-content: center;
+      }
+      
+
+    }
+
+    @media (max-width: 480px) {
+      .hero {
+        padding: 80px 0 60px;
+      }
+      
+      .content-section {
+        padding: 60px 0;
+      }
+      
+      .content-text {
+        padding: 25px;
+      }
+      
+      .cta-section {
+        padding: 50px 20px;
+      }
+      
+      .section-title {
+        font-size: 2rem;
+        margin-bottom: 40px;
+      }
+    }
+
+
+
+    @keyframes gradientShift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+  // Hero Section
+  section.hero
+    .hero-content
+      h1.hero-title פרויקט "דרך לחיים"
+      p.hero-subtitle ספורט שמעניק כלים לחיים שלמים
+
+  // Main Content Section
+  section.content-section
+    .container
+      .content-grid
+        .content-text.fade-in
+          h3 
+            svg(xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 256")
+              path(fill="currentColor" d="M176 232a8 8 0 0 1-8 8H88a8 8 0 0 1 0-16h80a8 8 0 0 1 8 8Zm40-128a87.55 87.55 0 0 1-33.64 69.21A16.24 16.24 0 0 0 176 186v6a16 16 0 0 1-16 16H96a16 16 0 0 1-16-16v-6a16 16 0 0 0-6.23-12.66A87.59 87.59 0 0 1 40 104.49C39.74 56.83 78.26 17.14 125.88 16A88 88 0 0 1 216 104Zm-16 0a72 72 0 0 0-73.74-72c-39 .92-70.47 33.39-70.26 72.39a71.65 71.65 0 0 0 27.64 56.3A32 32 0 0 1 96 186v6h64v-6a32.15 32.15 0 0 1 12.47-25.35A71.65 71.65 0 0 0 200 104Zm-16.11-9.34a57.6 57.6 0 0 0-46.56-46.55a8 8 0 0 0-2.66 15.78c16.57 2.79 30.63 16.85 33.44 33.45A8 8 0 0 0 176 104a9 9 0 0 0 1.35-.11a8 8 0 0 0 6.54-9.23Z")
+            | מה זה "דרך לחיים"?
+          p
+            | "דרך לחיים" הוא פרויקט ייחודי שפיתח עמית קורקוש, המשלב בין פעילות ספורטיבית מהנה לבין העצמה אישית ומנטלית.
+          p
+            | המטרה: להעניק לילדים כלים אמיתיים להתמודדות עם אתגרים, חיזוק הביטחון העצמי, פיתוח כישורים חברתיים ועבודת צוות – והכול בדרך חווייתית שמדברת אליהם.
+
+        .content-text
+          h3 
+            svg(xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 20 20")
+              g(fill="currentColor" fill-rule="evenodd" clip-rule="evenodd")
+                path(d="M10 12a2 2 0 1 0 0-4a2 2 0 0 0 0 4Zm0 2a4 4 0 1 0 0-8a4 4 0 0 0 0 8Zm3.504-11.29a2 2 0 0 1 2.309.375l1.102 1.102a2 2 0 0 1 .375 2.309l-.385.77a1 1 0 1 1-1.789-.895l.385-.77L14.399 4.5l-.77.385a1 1 0 0 1-.894-1.789l.77-.385Z")
+                path(d="M15.644 5.888a1 1 0 0 1 1.297.564l.46 1.166a1 1 0 1 1-1.861.733l-.46-1.166a1 1 0 0 1 .564-1.297Z")
+                path(d="M17.633 7.323A2 2 0 0 1 19 9.221v1.558a2 2 0 0 1-1.367 1.898l-.817.272a1 1 0 1 1-.632-1.898L17 10.78V9.221l-.816-.272a1 1 0 0 1 .632-1.898l.817.272Z")
+                path(d="M16.899 11.083a1 1 0 0 1 .518 1.316l-.5 1.15a1 1 0 1 1-1.834-.798l.5-1.15a1 1 0 0 1 1.316-.518Z")
+                path(d="M17.29 13.504a2 2 0 0 1-.375 2.309l-1.102 1.102a2 2 0 0 1-2.309.375l-.77-.385a1 1 0 0 1 .895-1.789l.77.385l1.102-1.102l-.385-.77a1 1 0 0 1 1.789-.894l.385.77Z")
+                path(d="M14.112 15.644a1 1 0 0 1-.563 1.297l-1.167.46a1 1 0 1 1-.733-1.861l1.166-.46a1 1 0 0 1 1.297.564Z")
+                path(d="M12.677 17.633A2 2 0 0 1 10.779 19H9.221a2 2 0 0 1-1.898-1.367l-.272-.817a1 1 0 0 1 1.898-.632L9.22 17h1.558l.272-.816a1 1 0 0 1 1.898.632l-.272.817Z")
+                path(d="M8.917 16.899a1 1 0 0 1-1.316.518l-1.15-.5a1 1 0 1 1 .798-1.834l1.15.5a1 1 0 0 1 .518 1.316Z")
+                path(d="M6.496 17.29a2 2 0 0 1-2.309-.375l-1.102-1.102a2 2 0 0 1-.375-2.309l.385-.77a1 1 0 1 1 1.789.895l-.385.77L5.601 15.5l.77-.385a1 1 0 0 1 .894 1.789l-.77.385Z")
+                path(d="M4.356 14.112a1 1 0 0 1-1.297-.563l-.46-1.167a1 1 0 0 1 1.861-.733l.46 1.166a1 1 0 0 1-.564 1.297Z")
+                path(d="M2.368 12.677A2 2 0 0 1 1 10.779V9.221a2 2 0 0 1 1.368-1.898l.816-.272a1 1 0 0 1 .632 1.898L3 9.22v1.558l.816.272a1 1 0 0 1-.632 1.898l-.816-.272Z")
+                path(d="M3.101 8.917a1 1 0 0 1-.518-1.316l.5-1.15a1 1 0 0 1 1.834.798l-.5 1.15a1 1 0 0 1-1.316.518Z")
+                path(d="M2.71 6.496a2 2 0 0 1 .375-2.309l1.102-1.102a2 2 0 0 1 2.309-.375l.77.385a1 1 0 0 1-.895 1.789l-.77-.385L4.5 5.601l.385.77a1 1 0 0 1-1.789.894l-.385-.77Z")
+                path(d="M5.888 4.356A1 1 0 0 1 6.45 3.06l1.167-.46a1 1 0 0 1 .733 1.861l-1.167.46a1 1 0 0 1-1.296-.564Z")
+                path(d="M7.323 2.368A2 2 0 0 1 9.221 1h1.558a2 2 0 0 1 1.898 1.368l.272.816a1 1 0 0 1-1.898.632L10.78 3H9.221l-.272.816a1 1 0 0 1-1.898-.632l.272-.816Z")
+                path(d="M11.083 3.101a1 1 0 0 1 1.316-.518l1.15.5a1 1 0 0 1-.798 1.834l-1.15-.5a1 1 0 0 1-.518-1.316Z")
+            | איך זה עובד?
+          ul
+            li מפגש שבועי של 45 דקות לאורך כל שנת הלימודים
+            li משולב בבתי ספר ומסגרות חינוכיות כחלק מהמערכת או כחוג ייחודי
+            li כל שיעור משלב פעילות ספורטיבית, דיון קצר ומסר לחיים
+            li בליווי מאמנים ומדריכים מוסמכים ומנוסים עם ניסיון עשיר בעבודה עם ילדים
+
+  // Goals Section
+  section.content-section
+    .container
+      .content-grid
+        .content-text.fade-in
+          h3 
+            svg(xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 14 14")
+              g(fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round")
+                path(d="M13.48 7.516a6.5 6.5 0 1 1-6.93-7")
+                path(d="M9.79 8.09A3 3 0 1 1 5.9 4.21")
+                path(d="M7 7l2.5-2.5")
+                path(d="M9.5 5l-2-.5l-.5-2l2-2l.5 2l2 .5z")
+            | מטרות הפרויקט
+          ul
+            li חיזוק הביטחון העצמי והאמונה ביכולות האישיות
+            li פיתוח משמעת עצמית, התמדה ואחריות
+            li חיזוק עבודת צוות, שיתוף פעולה וכבוד הדדי
+            li מתן כלים להתמודדות עם הצלחות וכישלונות. גם במגרש וגם בחיים
+
+        .content-text
+          h3 
+            svg(xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24")
+              path(fill="currentColor" d="M12.001 3.818a6.228 6.228 0 0 1 8.51 9.087l-5.224 5.225h-.001L12 21.415l-7.28-7.279l-1.23-1.232c-.001 0 0 0 0 0A6.228 6.228 0 0 1 12 3.818Zm3.285 11.485l3.811-3.812a4.228 4.228 0 1 0-5.98-5.98L12 6.627L10.883 5.51a4.228 4.228 0 1 0-5.98 5.98l1.232 1.232L12 18.587l3.285-3.285Z")
+            | למה זה כל כך חשוב?
+          p
+            | בעולם המהיר של היום, ילדים נדרשים להתמודד עם אתגרים רגשיים וחברתיים כבר מגיל צעיר. דרך הספורט, אפשר ללמד אותם ערכים והרגלים שילוו אותם לאורך כל חייהם – בצורה מהנה, חווייתית ומלאת אנרגיה חיובית.
+
+  // Target Audience Section
+  section.content-section
+    .container
+      .content-grid
+        .content-text
+          h3 
+            svg(xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24")
+              g(fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5")
+                path(d="M1 20v-1a7 7 0 0 1 7-7v0a7 7 0 0 1 7 7v1")
+                path(d="M13 14v0a5 5 0 0 1 5-5v0a5 5 0 0 1 5 5v.5")
+                path(stroke-linejoin="round" d="M8 12a4 4 0 1 0 0-8a4 4 0 0 0 0 8Zm10-3a3 3 0 1 0 0-6a3 3 0 0 0 0 6Z")
+            | למי זה מתאים?
+          ul
+            li תלמידי כיתות א'.ט'
+            li בתי ספר, חוגים קהילתיים, צהרונים ומסגרות חינוך בלתי פורמלי
+            li קבוצות קטנות או גדולות. עם התאמה אישית לצרכי הקבוצה
+
+        .content-text
+          h3 
+            svg(xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24")
+              path(fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10.704 4.325a1.5 1.5 0 0 1 2.592 0l1.818 3.12a1.5 1.5 0 0 0 .978.712l3.53.764a1.5 1.5 0 0 1 .8 2.465l-2.405 2.693a1.5 1.5 0 0 0-.374 1.15l.363 3.593a1.5 1.5 0 0 1-2.097 1.524l-3.304-1.456a1.5 1.5 0 0 0-1.21 0l-3.304 1.456a1.5 1.5 0 0 1-2.097-1.524l.363-3.593a1.5 1.5 0 0 0-.373-1.15l-2.406-2.693a1.5 1.5 0 0 1 .8-2.465l3.53-.764a1.5 1.5 0 0 0 .979-.711z")
+            | המטרה שלנו
+          p
+            | ליצור דור של ילדים חזקים, בטוחים בעצמם ומוכנים להתמודד עם כל אתגר שהחיים מזמנים להם!
+
+  // How to Start Section
+  section.content-section
+    .container
+      .content-grid.content-grid-full-width
+        .content-text.content-text-full-width
+          h3 
+            svg(xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 304 384")
+              path(fill="currentColor" d="M299 213H171v128h-43V213H0v-42h128V43h43v128h128v42z")
+            | איך מצטרפים?
+          ol
+            li פונים אלינו לקביעת פגישה עם מנהל בית הספר או הגורם האחראי
+            li בונים תוכנית שנתית מותאמת למוסד ולילדים
+            li מתחילים פעילות – והילדים כבר לא רוצים להפסיק!
+
+  // CTA Section
+  section.content-section
+    .container
+      .cta-section
+        h2.section-title 
+          | בואו נתחיל את המסע
+        p.cta-description
+          | מוכנים להעניק לילדים כלים לחיים שלמים? צרו קשר עכשיו ונבנה יחד את הפרויקט המושלם!
+        .cta-button-container
+          a.btn.btn-primary(href="/contact") 
+            | צרו קשר עכשיו
+            svg(xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24")
+              g(fill="none" stroke="currentColor" stroke-width="2")
+                path(d="M4 12a8 8 0 1 1 16 0v5.09c0 .848 0 1.27-.126 1.609a2 2 0 0 1-1.175 1.175C18.36 20 17.937 20 17.09 20H12a8 8 0 0 1-8-8z")
+                path(stroke-linecap="round" stroke-linejoin="round" d="M9 11h6m-3 4h3")
+
+
+
+

@@ -5,7 +5,8 @@ block content
     /* Override RTL direction for contact page */
     body {
       direction: rtl;
-      
+      overflow-x: hidden; /* Prevent horizontal scrolling */
+      width: 100%;
     }
 
     /* Contact Page Specific Styles */
@@ -23,6 +24,7 @@ block content
       display: flex;
       align-items: center;
       justify-content: center;
+      width: 100%;
     }
 
     .contact-hero::before {
@@ -55,6 +57,9 @@ block content
       max-width: 800px;
       margin: 0 auto;
       text-align: center;
+      width: 100%;
+      padding: 0 20px;
+      box-sizing: border-box;
     }
 
     .contact-hero-title {
@@ -86,6 +91,7 @@ block content
       background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
       padding: 80px 0;
       position: relative;
+      width: 100%;
     }
 
     .why-choose-section::before {
@@ -107,6 +113,8 @@ block content
       max-width: 700px;
       margin-left: auto;
       margin-right: auto;
+      padding: 0 20px;
+      box-sizing: border-box;
     }
 
     .why-choose-item {
@@ -179,6 +187,7 @@ block content
       background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
       padding: 80px 0;
       position: relative;
+      width: 100%;
     }
 
     .faq-section::before {
@@ -200,6 +209,8 @@ block content
       max-width: 800px;
       margin-left: auto;
       margin-right: auto;
+      padding: 0 20px;
+      box-sizing: border-box;
     }
 
     .faq-item {
@@ -251,6 +262,7 @@ block content
       background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
       position: relative;
       padding: 100px 0;
+      width: 100%;
     }
 
     .contact-section::before {
@@ -280,30 +292,17 @@ block content
     }
 
     .contact-container {
-      max-width: 100%;
+      max-width: 1200px;
       margin: 0 auto;
       position: relative;
       z-index: 1;
       display: flex;
-      justify-content: space-around;
-      align-items: start;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 40px;
       padding: 0 20px;
-    }
-
-    @media (max-width: 768px) {
-      .contact-container {
-        flex-direction: column;
-        justify-content: flex-start;
-        padding: 0 20px;
-        gap: 30px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .contact-container {
-        padding: 0 16px;
-        gap: 24px;
-      }
+      box-sizing: border-box;
+      width: 100%;
     }
 
     .contact-form {
@@ -316,24 +315,9 @@ block content
       position: relative;
       overflow: hidden;
       order: 1;
-      width: 35%;
-      min-width: 300px;
-    }
-
-    @media (max-width: 768px) {
-      .contact-form {
-        width: 100%;
-        min-width: auto;
-        max-width: 600px;
-        margin: 0 auto;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .contact-form {
-        max-width: 100%;
-        margin: 0;
-      }
+      flex: 1;
+      max-width: 500px;
+      min-width: 0;
     }
 
     .contact-form::before {
@@ -379,6 +363,7 @@ block content
       font-family: inherit;
       transition: all 0.3s ease;
       backdrop-filter: blur(10px);
+      box-sizing: border-box;
     }
 
     .form-input:focus,
@@ -449,26 +434,9 @@ block content
       display: flex;
       flex-direction: column;
       gap: 24px;
-      width: 25%;
-      min-width: 250px;
-    }
-
-    @media (max-width: 768px) {
-      .contact-info {
-        width: 100%;
-        min-width: auto;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 20px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .contact-info {
-        flex-direction: column;
-        gap: 16px;
-      }
+      flex: 1;
+      max-width: 400px;
+      min-width: 0;
     }
 
     .contact-info-item {
@@ -480,22 +448,6 @@ block content
       transition: all 0.3s ease;
       position: relative;
       overflow: hidden;
-    }
-
-    @media (max-width: 768px) {
-      .contact-info-item {
-        flex: 1;
-        min-width: 250px;
-        max-width: 300px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .contact-info-item {
-        min-width: auto;
-        max-width: none;
-        width: 100%;
-      }
     }
 
     .contact-info-item::before {
@@ -648,7 +600,7 @@ block content
       100% { transform: rotate(360deg); }
     }
 
-    /* Responsive Design */
+    /* Responsive Design - Mobile First */
     @media (max-width: 1024px) {
       .contact-container {
         flex-direction: column;
@@ -670,6 +622,7 @@ block content
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: center;
+        max-width: 100%;
       }
 
       .contact-info-item {
@@ -683,6 +636,7 @@ block content
         gap: 24px;
         margin-top: 40px;
         max-width: 100%;
+        padding: 0 20px;
       }
     }
 
@@ -736,6 +690,7 @@ block content
         flex-direction: column;
         gap: 20px;
         margin: 0;
+        max-width: 100%;
       }
 
       .contact-info-item {
@@ -777,9 +732,13 @@ block content
         margin-bottom: 20px;
       }
 
+      .contact-container {
+        padding: 0 12px;
+      }
+
       .contact-form {
-        padding: 24px 20px;
-        margin: 0 16px;
+        padding: 20px 16px;
+        margin: 0;
       }
 
       .form-input,
@@ -797,6 +756,7 @@ block content
         grid-template-columns: 1fr;
         gap: 20px;
         margin-top: 30px;
+        padding: 0 12px;
       }
 
       .faq-grid {
@@ -804,6 +764,11 @@ block content
         gap: 16px;
         margin-top: 24px;
         padding: 0 12px;
+      }
+
+      .why-choose-section,
+      .faq-section {
+        padding: 40px 0;
       }
     }
 
